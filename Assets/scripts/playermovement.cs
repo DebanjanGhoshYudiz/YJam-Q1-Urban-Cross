@@ -18,11 +18,11 @@ public class playermovement : MonoBehaviour
         if(playercanmove)
         {
             transform.position = Vector3.MoveTowards(transform.position,targetpos,Time.deltaTime*10f);
-
+            if(transform.position== targetpos)
+            {
+                FindObjectOfType<blocklist>().blocksmove = true;
+            }
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("the collidion with player "+collision.collider.name);
-    }
+    
 }
