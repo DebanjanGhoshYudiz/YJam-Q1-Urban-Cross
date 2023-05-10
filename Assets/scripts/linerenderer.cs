@@ -35,12 +35,11 @@ public class linerenderer : MonoBehaviour
     {
 
         //otherwise tyhe line rendere will move with player
-        if (!linerotate)
+        if (!linerotate && !myplayermovement.playercanmove)
         {
-            if (myplayermovement.playercanmove != true)
-            {
+            
                 transform.position = new Vector3(player.transform.position.x + 0.5f, yminsprite, 0f);
-            }
+            
             if (Input.GetMouseButtonDown(0))
             {
                 currentposition = Vector3.zero;
