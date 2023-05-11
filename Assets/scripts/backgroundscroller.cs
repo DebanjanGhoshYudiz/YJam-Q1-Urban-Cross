@@ -16,6 +16,6 @@ public class backgroundscroller : MonoBehaviour
     void Update()
     {
       
-        bgrenderer.material.mainTextureOffset += new Vector2(speed*Time.deltaTime,0f);
+        //bgrenderer.material.mainTextureOffset += new Vector2(speed*Time.deltaTime,0f);
     }
 }
