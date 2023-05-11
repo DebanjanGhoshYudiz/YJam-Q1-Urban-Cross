@@ -10,6 +10,8 @@ public class cameramove : MonoBehaviour
     public float speed;
     float halfHeight;
     float halfWidth;
+    Vector3 targetpos;
+    Vector3 enivronemtpos;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +24,9 @@ public class cameramove : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-
-            transform.position = new Vector3(transform.position.x + halfWidth + 0.3f, transform.position.y, transform.position.z);
-            environment.transform.position = new Vector3(environment.transform.position.x + halfWidth + 0.3f, environment.transform.position.y, environment.transform.position.z);
+          
+            transform.position = new Vector3(transform.position.x + halfWidth , transform.position.y, transform.position.z);
+            environment.transform.position = new Vector3(environment.transform.position.x + halfWidth , environment.transform.position.y, environment.transform.position.z);
             bgrenderer.material.mainTextureOffset += new Vector2(speed * Time.deltaTime, 0f);
 
         }

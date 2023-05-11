@@ -12,50 +12,126 @@ public class randomizeblock : MonoBehaviour
     public GameObject refblock;
     List<randomizeblock> blocklist;
     Vector3 targetpos;
+    public List<Transform> blockpositions;
+    public Vector3 xmin;
+    public Vector3 xmid;
+    public Vector3 xmax;
+    public Vector3 xprev;
+    [SerializeField] GameObject testobject;
     // Start is called before the first frame update
     void Start()
     {
-
+        
         halfHeight = Camera.main.orthographicSize;
         halfWidth = Camera.main.aspect * halfHeight;
-        blocklist = FindObjectsOfType<randomizeblock>().ToList();
-        for (int i = 0; i < blocklist.Count; i++)
+        //blocklist = FindObjectsOfType<randomizeblock>().ToList();
+        //for (int i = 0; i < blocklist.Count; i++)
+        //{
+        //    if (blocklist[i].gameObject != gameObject)
+        //    {
+        //        refblock = blocklist[i].gameObject;
+
+        //    }
+        //}
+
+      
+        foreach (Transform child in gameObject.transform)
         {
-            if (blocklist[i].gameObject != gameObject)
+          
+            if (child.transform.position.x < Camera.main.transform.position.x && (child.transform.position.x > (Camera.main.transform.position.x - halfWidth)))
             {
-                refblock = blocklist[i].gameObject;
-
+                xmin = child.transform.position;
             }
+            else
+            if ((child.transform.position.x > Camera.main.transform.position.x) && (child.transform.position.x < (Camera.main.transform.position.x + halfWidth)))
+            {
+                xmid = child.transform.position;
+            }
+            else
+            if (child.transform.position.x > (Camera.main.transform.position.x + halfWidth))
+            {
+                xmax = child.transform.position;
+            }
+            else
+            if (child.transform.position.x < (Camera.main.transform.position.x- halfWidth))
+            {
+                xprev = child.transform.position;
+            }
+            
+            blockpositions.Add(child.transform);
         }
-
-
     }
 
-    // Update is called once per frame
-    void Update()
+
+
+    // Update is called once per frame
+    void Update()
     {
+        
+        
 
         if (Input.GetMouseButtonDown(0))
         {
-            //we have to change the 10.5f vlue
+            reshuffletransform();
+            setminmax();
+    
 
-            targetpos = new Vector3(refblock.transform.position.x + 8.75F, transform.position.y, transform.position.z);
-            if (transform.position.x < (Camera.main.transform.position.x))
+
+            foreach (Transform block in gameObject.transform)
             {
-                randomizesize();
-                transform.position = targetpos;
+                if (block.transform.position == xmax)
+                {
+                    //block.transform.position = xmid;
+                    block.GetComponent<blockmove>().targetpos = xmid;
+                }
+
+                else if (block.transform.position == xmid)
+                {
+                    //block.transform.position = xmin;
+                    block.GetComponent<blockmove>().targetpos = xmin;
+                }
+
+                else if (block.transform.position == xmin)
+                { 
+                    //block.transform.position = xprev;
+                    block.GetComponent<blockmove>().targetpos = xprev;
+
+                }
+                else if (block.transform.position == xprev)
+                {
+                    randomizesize(block.gameObject);
+                    block.GetComponent<blockmove>().targetpos = xmax;
+                    block.transform.position = xmax;
+                  
+
+                }
+
             }
+
         }
 
     }
 
-
-    public void randomizesize()
+    private void reshuffletransform()
     {
-        foreach (Transform child in gameObject.transform)
+        for(int i=0;i< blockpositions.Count;i++)
         {
-            child.transform.localScale = new Vector3(Random.Range(0.6f, 1f), child.transform.localScale.y, child.transform.localScale.z);
+           
+            blockpositions[i].transform.position=new Vector3(blockpositions[i].transform.position.x + halfWidth, blockpositions[i].transform.position.y, blockpositions[i].transform.position.z);
         }
+    }
+    private void setminmax()
+    {
+        
+        xmin = xmin + new Vector3(halfWidth, 0f,0f);
+        xmid= xmid + new Vector3(halfWidth, 0f, 0f);
+        xmax = xmax + new Vector3(halfWidth, 0f, 0f);
+        xprev = xprev + new Vector3(halfWidth, 0f, 0f);
+    }
+    public void randomizesize(GameObject blockgameobject)
+    {
+       
+        blockgameobject.transform.localScale= new Vector3(Random.Range(0.6f, 1f), blockgameobject.transform.localScale.y, blockgameobject.transform.localScale.z);
     }
 
 }

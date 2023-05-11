@@ -20,7 +20,7 @@ public class playermovement : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position,targetpos,Time.deltaTime*10f);
             if(transform.position== targetpos)
             {
-                FindObjectOfType<blocklist>().blocksmove = true;
+                //FindObjectOfType<blocklist>().blocksmove = true;
             }
         }
     }
