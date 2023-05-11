@@ -6,10 +6,13 @@ public class playermovement : MonoBehaviour
 {
     public bool playercanmove;
     public Vector3 targetpos;
+    public randomizeblock myrandomizeblock;
+    public cameramove mycameramove;
     // Start is called before the first frame update
     void Start()
     {
-        
+        myrandomizeblock = FindObjectOfType<randomizeblock>();
+        mycameramove = FindObjectOfType<cameramove>();
     }
 
     // Update is called once per frame
@@ -18,9 +21,13 @@ public class playermovement : MonoBehaviour
         if(playercanmove)
         {
             transform.position = Vector3.MoveTowards(transform.position,targetpos,Time.deltaTime*10f);
-            if(transform.position== targetpos)
+            if (transform.position == targetpos && (myrandomizeblock.moveblocks!=true && myrandomizeblock.moveblocks!=true && playercanmove!=false))
             {
-                //FindObjectOfType<blocklist>().blocksmove = true;
+               
+                playercanmove = false;
+                myrandomizeblock.moveblocks = true;
+                mycameramove.cameramotion = true;
+               //randomize block
             }
         }
     }

@@ -18,26 +18,61 @@ public class randomizeblock : MonoBehaviour
     public Vector3 xmax;
     public Vector3 xprev;
     [SerializeField] GameObject testobject;
+    public bool moveblocks=false;
     // Start is called before the first frame update
     void Start()
     {
-        
+
         halfHeight = Camera.main.orthographicSize;
         halfWidth = Camera.main.aspect * halfHeight;
-        //blocklist = FindObjectsOfType<randomizeblock>().ToList();
-        //for (int i = 0; i < blocklist.Count; i++)
+        setxminxmax();
+    }
+
+   
+
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+        
+        //we need to change here
+        //if (Input.GetMouseButtonDown(0))
         //{
-        //    if (blocklist[i].gameObject != gameObject)
-        //    {
-        //        refblock = blocklist[i].gameObject;
+        //    reshuffletransform();
+        //    setminmax();
+        //    blockmotion();
 
-        //    }
         //}
+        if(moveblocks)
+        {
+            reshuffletransform();
+            setminmax();
+            blockmotion();
+            moveblocks= moveblocksturnoff();
+        }
 
-      
+
+    }
+
+    public bool moveblocksturnoff()
+    {
+        
+        foreach (Transform block in gameObject.transform)
+        {
+            if (block.transform.position != block.GetComponent<blockmove>().targetpos)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void setxminxmax()
+    {
         foreach (Transform child in gameObject.transform)
         {
-          
+
             if (child.transform.position.x < Camera.main.transform.position.x && (child.transform.position.x > (Camera.main.transform.position.x - halfWidth)))
             {
                 xmin = child.transform.position;
@@ -53,63 +88,48 @@ public class randomizeblock : MonoBehaviour
                 xmax = child.transform.position;
             }
             else
-            if (child.transform.position.x < (Camera.main.transform.position.x- halfWidth))
+            if (child.transform.position.x < (Camera.main.transform.position.x - halfWidth))
             {
                 xprev = child.transform.position;
             }
-            
+
             blockpositions.Add(child.transform);
         }
     }
 
-
-
-    // Update is called once per frame
-    void Update()
+    public void blockmotion()
     {
-        
-        
-
-        if (Input.GetMouseButtonDown(0))
+        foreach (Transform block in gameObject.transform)
         {
-            reshuffletransform();
-            setminmax();
-    
-
-
-            foreach (Transform block in gameObject.transform)
+            if (block.transform.position == xmax)
             {
-                if (block.transform.position == xmax)
-                {
-                    //block.transform.position = xmid;
-                    block.GetComponent<blockmove>().targetpos = xmid;
-                }
 
-                else if (block.transform.position == xmid)
-                {
-                    //block.transform.position = xmin;
-                    block.GetComponent<blockmove>().targetpos = xmin;
-                }
+                block.GetComponent<blockmove>().targetpos = xmid;
+            }
 
-                else if (block.transform.position == xmin)
-                { 
-                    //block.transform.position = xprev;
-                    block.GetComponent<blockmove>().targetpos = xprev;
+            else if (block.transform.position == xmid)
+            {
 
-                }
-                else if (block.transform.position == xprev)
-                {
-                    randomizesize(block.gameObject);
-                    block.GetComponent<blockmove>().targetpos = xmax;
-                    block.transform.position = xmax;
-                  
+                block.GetComponent<blockmove>().targetpos = xmin;
+            }
 
-                }
+            else if (block.transform.position == xmin)
+            {
+
+                block.GetComponent<blockmove>().targetpos = xprev;
+
+            }
+            else if (block.transform.position == xprev)
+            {
+                Debug.Log("the block gameobject "+block.gameObject.name);
+                randomizesize(block.gameObject);
+                block.GetComponent<blockmove>().targetpos = xmax;
+                block.transform.position = xmax;
+
 
             }
 
         }
-
     }
 
     private void reshuffletransform()
@@ -130,7 +150,8 @@ public class randomizeblock : MonoBehaviour
     }
     public void randomizesize(GameObject blockgameobject)
     {
-       
+
+        
         blockgameobject.transform.localScale= new Vector3(Random.Range(0.6f, 1f), blockgameobject.transform.localScale.y, blockgameobject.transform.localScale.z);
     }
 

@@ -37,10 +37,13 @@ public class linerenderer : MonoBehaviour
         //otherwise tyhe line rendere will move with player
         if (!linerotate && !myplayermovement.playercanmove)
         {
-      
+           
             transform.position = new Vector3(player.transform.position.x + 0.5f, yminsprite, 0f);
             if (Input.GetMouseButtonDown(0))
             {
+                mylinerenderer.SetPosition(0, Vector3.zero);
+                mylinerenderer.SetPosition(1, Vector3.zero);
+                mylinerenderer.transform.eulerAngles = Vector3.zero;
                 currentposition = Vector3.zero;
                 mylinerenderer.SetPosition(0, currentposition);
             }
@@ -87,8 +90,15 @@ public class linerenderer : MonoBehaviour
                     myplayermovement.playercanmove = true;
                     linerotate = false;
                     myplayermovement.targetpos = new Vector3(transform.position.x + positions[positions.Count - 1].y, player.transform.position.y, player.transform.position.z);
+                
                 }
 
             }
+            //if(myplayermovement.playercanmove==false)
+            //{
+            
+
+            //}
         }
+   
 }
