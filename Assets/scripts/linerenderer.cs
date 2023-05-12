@@ -92,8 +92,6 @@ public class linerenderer : MonoBehaviour
 
                 myplayermovement.playercanmove = true;
                 linerotate = false;
-                //StartCoroutine(linerotatefalse());
-                //linerotate = false;
                 timer = 0f;
                 myplayermovement.targetpos = new Vector3(transform.position.x + positions[positions.Count - 1].y, player.transform.position.y, player.transform.position.z);
 

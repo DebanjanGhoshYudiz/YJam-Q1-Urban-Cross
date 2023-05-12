@@ -13,10 +13,24 @@ public class randomizeblock : MonoBehaviour
     List<randomizeblock> blocklist;
     Vector3 targetpos;
     public List<Transform> blockpositions;
-    public Vector3 xmin;
-    public Vector3 xmid;
-    public Vector3 xmax;
-    public Vector3 xprev;
+    Vector3 xmin;
+    public Vector3 xmid
+    {
+        get;
+        private set;
+    }
+    //Vector3 xmax;
+    public Vector3 xmax
+    {
+        get;
+        private set;
+    }
+    Vector3 xprev;
+    //public Vector3 xprev
+    //{
+    //    get;
+    //    private set;
+    //}
     [SerializeField] GameObject testobject;
     // Start is called before the first frame update
     void Start()
@@ -94,6 +108,7 @@ public class randomizeblock : MonoBehaviour
             {
                 randomizesize(block.gameObject);
                 block.transform.position = xmax;
+
             }
         }
     }

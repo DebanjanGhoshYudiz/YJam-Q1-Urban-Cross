@@ -11,16 +11,19 @@ public class playermovement : MonoBehaviour
     GameObject collidedgameobject = null;
     public bool canmove = false;
     float timer = 0f;
+    Cherryinstantiate cherryinstantiate;
     // Start is called before the first frame update
     void Start()
     {
         myrandomizeblock = FindObjectOfType<randomizeblock>();
         cameramove = FindObjectOfType<cameramove>();
+        cherryinstantiate = FindObjectOfType<Cherryinstantiate>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        transform.eulerAngles = Vector3.zero;
         if (playercanmove)
         {
 
@@ -32,6 +35,8 @@ public class playermovement : MonoBehaviour
                 myrandomizeblock.setminmax();
                 myrandomizeblock.reshuffle();
                 cameramove.settargetpos();
+                cherryinstantiate.throwcherry();
+                //cherryinstantiate.
                 playercanmove = false;
                 canmove = false;
                 //FindObjectOfType<blocklist>().blocksmove = true;
@@ -43,20 +48,16 @@ public class playermovement : MonoBehaviour
         {
             if (playercanmove)
             {
-
-                if (transform.localScale.y == 1f)
+                if (transform.localScale.y == 0.5)
                 {
-                    Debug.Log("localscale " + 1f);
-                    transform.localScale = new Vector3(transform.localScale.x, -1f, transform.localScale.z);
-                    //-1.55f;
-                    transform.position = new Vector3(transform.position.x, -1.55f, transform.position.z);
+                    transform.localScale = new Vector3(transform.localScale.x, -0.5f, transform.localScale.z);
+                    transform.position = new Vector3(transform.position.x, -2.5f, transform.position.z);
                 }
-                else if (transform.localScale.y == -1f)
+                else if (transform.localScale.y == -0.5)
                 {
-                    Debug.Log("localscale " + -1f);
-                    //-0.3049555f
-                    transform.localScale = new Vector3(transform.localScale.x, 1f, transform.localScale.z);
-                    transform.position = new Vector3(transform.position.x, -0.3049555f, transform.position.z);
+
+                    transform.localScale = new Vector3(transform.localScale.x, 0.5f, transform.localScale.z);
+                    transform.position = new Vector3(transform.position.x, -1.87f, transform.position.z);
                 }
             }
         }
@@ -70,10 +71,12 @@ public class playermovement : MonoBehaviour
             collidedgameobject = collision.collider.gameObject;
             canmove = true;
         }
+       //if the player collides and scale is backwards stop the game
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
 
+        
         if (collision.gameObject != null && playercanmove == false)
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(collision.collider.bounds.max.x - 0.3f, transform.position.y, transform.position.z), timer * 2f);
