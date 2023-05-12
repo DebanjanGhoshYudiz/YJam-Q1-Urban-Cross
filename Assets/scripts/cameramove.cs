@@ -5,17 +5,18 @@ using UnityEngine;
 public class cameramove : MonoBehaviour
 {
     [SerializeField] GameObject environment;
-    [SerializeField] float xoffset;
     public Renderer bgrenderer;
     public float speed;
     float halfHeight;
     float halfWidth;
     Vector3 targetpos;
-    Vector3 enivronemttargetpos;
-    public bool cameramotion=false;
-    // Start is called before the first frame update
-    void Start()
+    Vector3 environmenttargetpos;
+    public bool cameramotion = false;
+
+    // Start is called before the first frame update
+    void Start()
     {
+        targetpos = Camera.main.transform.position;
         halfHeight = Camera.main.orthographicSize;
         halfWidth = Camera.main.aspect * halfHeight;
     }
@@ -24,15 +25,19 @@ public class cameramove : MonoBehaviour
     void Update()
     {
 
-        if (cameramotion)
+
+        if (transform.position != targetpos)
         {
-            targetpos= new Vector3(transform.position.x + halfWidth, transform.position.y, transform.position.z);
-            transform.position = new Vector3(transform.position.x + halfWidth, transform.position.y, transform.position.z);
-            enivronemttargetpos= new Vector3(environment.transform.position.x + halfWidth, environment.transform.position.y, environment.transform.position.z);
-            environment.transform.position = enivronemttargetpos;
-            bgrenderer.material.mainTextureOffset += new Vector2(speed * Time.deltaTime, 0f);
-            cameramotion = false;
+            transform.position = Vector3.MoveTowards(transform.position, targetpos, Time.deltaTime * 20f);
+            environment.transform.position = Vector3.MoveTowards(environment.transform.position, environmenttargetpos, Time.deltaTime * 20f);
         }
-       
+
+
     }
+    public void settargetpos()
+    {
+        targetpos = new Vector3(transform.position.x + halfWidth, transform.position.y, transform.position.z);
+        environmenttargetpos = new Vector3(environment.transform.position.x + halfWidth, environment.transform.position.y, environment.transform.position.z);
+    }
+
 }

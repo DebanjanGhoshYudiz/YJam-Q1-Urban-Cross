@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,13 +35,14 @@ public class linerenderer : MonoBehaviour
     void Update()
     {
 
-        //otherwise tyhe line rendere will move with player
-        if (!linerotate && !myplayermovement.playercanmove)
+        //otherwise tyhe line rendere will move with player
+        if (!linerotate && !myplayermovement.playercanmove)
         {
-           
-            transform.position = new Vector3(player.transform.position.x + 0.5f, yminsprite, 0f);
+
+
             if (Input.GetMouseButtonDown(0))
             {
+                transform.position = new Vector3(player.transform.position.x + 0.25f, yminsprite, 0f);
                 mylinerenderer.SetPosition(0, Vector3.zero);
                 mylinerenderer.SetPosition(1, Vector3.zero);
                 mylinerenderer.transform.eulerAngles = Vector3.zero;
@@ -50,7 +52,7 @@ public class linerenderer : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 length = mylinerenderer.GetPosition(1).y - mylinerenderer.GetPosition(0).y;
-                if (length <= 3f)
+                if (length <= 5f)
                 {
                     currentposition += (player.transform.up * 0.9f * Time.deltaTime);
                     currentposition = new Vector3(0f, currentposition.y, 0f);
@@ -78,27 +80,31 @@ public class linerenderer : MonoBehaviour
 
 
         }
-            if (linerotate)
-            {
-                angle = Vector3.Angle(player.transform.up, player.transform.right);
-                percmoved = Mathf.MoveTowards(0f, angle, timer * 200f);
-                timer += Time.deltaTime;
-                mylinerenderer.transform.eulerAngles = new Vector3(0f, 0f, -percmoved);
+        if (linerotate)
+        {
+            angle = Vector3.Angle(player.transform.up, player.transform.right);
+            percmoved = Mathf.MoveTowards(0f, angle, timer * 100f);
+            timer += Time.deltaTime;
+            mylinerenderer.transform.eulerAngles = new Vector3(0f, 0f, -percmoved);
 
-                if (mylinerenderer.transform.eulerAngles.z == 270f)
-                {
-                    myplayermovement.playercanmove = true;
-                    linerotate = false;
-                    myplayermovement.targetpos = new Vector3(transform.position.x + positions[positions.Count - 1].y, player.transform.position.y, player.transform.position.z);
-                
-                }
+            if (mylinerenderer.transform.eulerAngles.z == 270f)
+            {
+
+                myplayermovement.playercanmove = true;
+                linerotate = false;
+                //StartCoroutine(linerotatefalse());
+                //linerotate = false;
+                timer = 0f;
+                myplayermovement.targetpos = new Vector3(transform.position.x + positions[positions.Count - 1].y, player.transform.position.y, player.transform.position.z);
 
             }
-            //if(myplayermovement.playercanmove==false)
-            //{
-            
 
-            //}
         }
-   
+    }
+
+    //IEnumerator linerotatefalse()
+    //{
+    //    yield return new WaitForSeconds(1f);
+    //    linerotate = false;
+    //}
 }
