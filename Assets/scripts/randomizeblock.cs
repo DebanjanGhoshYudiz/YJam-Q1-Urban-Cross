@@ -19,18 +19,14 @@ public class randomizeblock : MonoBehaviour
         get;
         private set;
     }
-    //Vector3 xmax;
+    
     public Vector3 xmax
     {
         get;
         private set;
     }
     Vector3 xprev;
-    //public Vector3 xprev
-    //{
-    //    get;
-    //    private set;
-    //}
+  
     [SerializeField] GameObject testobject;
     // Start is called before the first frame update
     void Start()
@@ -38,16 +34,7 @@ public class randomizeblock : MonoBehaviour
 
         halfHeight = Camera.main.orthographicSize;
         halfWidth = Camera.main.aspect * halfHeight;
-        //blocklist = FindObjectsOfType<randomizeblock>().ToList();
-        //for (int i = 0; i < blocklist.Count; i++)
-        //{
-        //    if (blocklist[i].gameObject != gameObject)
-        //    {
-        //        refblock = blocklist[i].gameObject;
-
-        //    }
-        //}
-
+      
 
         foreach (Transform child in gameObject.transform)
         {

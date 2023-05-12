@@ -26,10 +26,6 @@ public class Cherryinstantiate : MonoBehaviour
     void Update()
     {
 
-        //if()
-        //{
-
-        //}
         
     }
 
@@ -37,12 +33,12 @@ public class Cherryinstantiate : MonoBehaviour
     public void throwcherry()
     {
 
-        //throw a condition if cherry is already there
+        
         xmin = myrandomizeblock.xmid;
         xmax = myrandomizeblock.xmax;
-        Debug.Log(cherrygameobject.active);
-        randnumber = Random.Range(1, 5);
-        if (randnumber==1 || randnumber==2 && cherrygameobject.active==false)
+       
+        randnumber = Random.Range(1,4);
+        if ((randnumber==1 || randnumber==2 )&& cherrygameobject.active==false)
         {
            
             cherrygameobject.SetActive(true);
@@ -55,7 +51,7 @@ public class Cherryinstantiate : MonoBehaviour
             {
                 y = -1.87f;
             }
-            cherrygameobject.transform.position = new Vector3(Random.Range(xmin.x+2f,xmax.x-3f), y, 0f);
+            cherrygameobject.transform.position = new Vector3(Random.Range(xmin.x+2f,xmax.x-2f), y, 0f);
         }
     }
 

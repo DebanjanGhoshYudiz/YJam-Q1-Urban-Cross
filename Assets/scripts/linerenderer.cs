@@ -36,12 +36,14 @@ public class linerenderer : MonoBehaviour
     {
 
         //otherwise tyhe line rendere will move with player
-        if (!linerotate && !myplayermovement.playercanmove)
+        if (!linerotate && !myplayermovement.playercanmove && !myplayermovement.isplayerdestroyed)
         {
 
 
             if (Input.GetMouseButtonDown(0))
             {
+                positions.Clear();
+                //myedgecollier2d.points.cl = 1;
                 transform.position = new Vector3(player.transform.position.x + 0.25f, yminsprite, 0f);
                 mylinerenderer.SetPosition(0, Vector3.zero);
                 mylinerenderer.SetPosition(1, Vector3.zero);
@@ -99,6 +101,7 @@ public class linerenderer : MonoBehaviour
 
         }
     }
+  
 
     //IEnumerator linerotatefalse()
     //{

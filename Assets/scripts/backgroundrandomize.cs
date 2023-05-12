@@ -12,7 +12,7 @@ public class backgroundrandomize : MonoBehaviour
     {
         environmentcount = Random.Range(0, environments.Count + 1);
         renderer = GetComponent<MeshRenderer>();
-        Debug.Log("rendere "+renderer);
+        
 
         //renderer.materials[0] = environments[environmentcount];
         
