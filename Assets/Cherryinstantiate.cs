@@ -40,7 +40,7 @@ public class Cherryinstantiate : MonoBehaviour
         //throw a condition if cherry is already there
         xmin = myrandomizeblock.xmid;
         xmax = myrandomizeblock.xmax;
-   
+        Debug.Log(cherrygameobject.active);
         randnumber = Random.Range(1, 5);
         if (randnumber==1 || randnumber==2 && cherrygameobject.active==false)
         {
@@ -55,7 +55,7 @@ public class Cherryinstantiate : MonoBehaviour
             {
                 y = -1.87f;
             }
-            cherrygameobject.transform.position = new Vector3(Random.Range(xmin.x+0.3f,xmax.x-0.3f), y, 0f);
+            cherrygameobject.transform.position = new Vector3(Random.Range(xmin.x+2f,xmax.x-3f), y, 0f);
         }
     }
 
