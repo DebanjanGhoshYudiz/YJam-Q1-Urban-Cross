@@ -19,6 +19,7 @@ public class linerenderer : MonoBehaviour
     playermovement myplayermovement;
     public Vector3 targetpos;
     public float length;
+    public BoxCollider2D boxcollider2d;
 
     // Start is called before the first frame update
     [System.Obsolete]
@@ -43,6 +44,7 @@ public class linerenderer : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 positions.Clear();
+             
                 //myedgecollier2d.points.cl = 1;
                 transform.position = new Vector3(player.transform.position.x + 0.25f, yminsprite, 0f);
                 mylinerenderer.SetPosition(0, Vector3.zero);
@@ -77,6 +79,7 @@ public class linerenderer : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0))
             {
+               
                 linerotate = true;
             }
 
@@ -95,7 +98,8 @@ public class linerenderer : MonoBehaviour
                 myplayermovement.playercanmove = true;
                 linerotate = false;
                 timer = 0f;
-                myplayermovement.targetpos = new Vector3(transform.position.x + positions[positions.Count - 1].y, player.transform.position.y, player.transform.position.z);
+                myplayermovement.targetpos = new Vector3(player.transform.position.x + positions[positions.Count - 1].y, player.transform.position.y, player.transform.position.z);
+                boxcollider2d.transform.position = new Vector3(transform.position.x + positions[positions.Count - 1].y, transform.position.y, player.transform.position.z);
 
             }
 
