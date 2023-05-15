@@ -33,8 +33,10 @@ public class BackgroundManager : MonoBehaviour
 
         if (transform.position != targetpos)
         {
+
             //distance between xmid and xmax
             //xmid -xmax is max threshold
+            //float xmove = xmax - xmid;
             transform.position = Vector3.MoveTowards(transform.position, targetpos, Time.deltaTime * 20f);
             environment.transform.position = Vector3.MoveTowards(environment.transform.position, environmenttargetpos, Time.deltaTime * 20f);
         }
@@ -45,8 +47,15 @@ public class BackgroundManager : MonoBehaviour
     {
         //problerm may arise later
         Scoringsystem.Instance.Incrementgameplayscore();
-        targetpos = new Vector3(transform.position.x + halfWidth, transform.position.y, transform.position.z);
-        environmenttargetpos = new Vector3(environment.transform.position.x + halfWidth, environment.transform.position.y, environment.transform.position.z);
+        Vector3 minpos = BlockManager.Instance.xmin;
+        Vector3 midpos = BlockManager.Instance.xmid;
+        Vector3 maxpos = BlockManager.Instance.xmax;
+        float xmin = maxpos.x - midpos.x;
+     
+        //float xmax = xmin + 1.5f;
+        //float xrand = UnityEngine.Random.Range(xmin, xmax);
+        targetpos = new Vector3(transform.position.x + xmin, transform.position.y, transform.position.z);
+        environmenttargetpos = new Vector3(environment.transform.position.x + xmin, environment.transform.position.y, environment.transform.position.z);
     }
 
 }

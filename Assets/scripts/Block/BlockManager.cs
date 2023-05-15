@@ -11,7 +11,11 @@ public class BlockManager : MonoBehaviour
     float halfWidth;
     Vector3 targetpos;
     public List<Transform> blockpositions;
-    Vector3 xmin;
+    public Vector3 xmin
+    {
+        get;
+        private set;
+    }
     public Vector3 xmid
     {
         get;
@@ -85,9 +89,15 @@ public class BlockManager : MonoBehaviour
     public void setminmax()
     {
 
+
+        
+        //float xthreshold = xmid.x - xmin.x;
         xmin = xmin + new Vector3(halfWidth, 0f, 0f);
         xmid = xmid + new Vector3(halfWidth, 0f, 0f);
-        xmax = xmax + new Vector3(halfWidth, 0f, 0f);
+        //xmax = xmax + new Vector3(halfWidth, 0f, 0f);
+        xmax= xmid + new Vector3(Random.Range(xmid.x+2f,halfWidth), 0f, 0f);
+        //xmax will be greter tghan xwitdh
+        //xmax = new Vector3(Camera.main.transform.position.x + 2*halfWidth+Random.Range(3F,6F), xmax.y, xmax.z);
         xprev = xprev + new Vector3(halfWidth, 0f, 0f);
     }
 
@@ -98,6 +108,7 @@ public class BlockManager : MonoBehaviour
             if (block.transform.position.x <= xprev.x)
             {
                 randomizesize(block.gameObject);
+                //we can change in xmax
                 block.transform.position = xmax;
 
             }
