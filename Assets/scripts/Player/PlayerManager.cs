@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public bool playercanmove;
+    public bool playercanmove=false;
     public Vector3 targetpos;
     GameObject collidedgameobject = null;
     public GameObject staycolliedegameobject=null;

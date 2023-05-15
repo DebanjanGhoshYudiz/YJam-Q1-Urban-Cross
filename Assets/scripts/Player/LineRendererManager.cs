@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LineRendererManager : MonoBehaviour
 {
-    public LineRenderer mylinerenderer;
+    public LineRenderer linerenderer;
     public Vector3 currentposition;
     public float mindistance;
-    public EdgeCollider2D myedgecollier2d;
+    public EdgeCollider2D edgecollier2d;
     public List<Vector2> positions;
     public float angle;
     float timer = 0f;
@@ -17,100 +18,138 @@ public class LineRendererManager : MonoBehaviour
     [SerializeField] GameObject player;
     public float yminsprite;
     //playermovement myplayermovement;
-    PlayerManager playermanager;
+    PlayerManager playerManager;
     public Vector3 targetpos;
     public float length;
     public BoxCollider2D boxcollider2d;
-
+    public LineController linecontroller;
+    bool stoplinestretch = true;
+    public bool linestretch = false;
+    public bool isgamestarted=true;
     // Start is called before the first frame update
     [System.Obsolete]
     void Start()
     {
-        playermanager = FindObjectOfType<PlayerManager>();
-        mylinerenderer.SetWidth(0.1f, 0.1f);
+        linecontroller = new LineController();
+        isgamestarted = true;
+        playerManager = FindObjectOfType<PlayerManager>();
+        linerenderer.SetWidth(0.1f, 0.1f);
         yminsprite = player.GetComponent<SpriteRenderer>().bounds.min.y;
         currentposition = Vector3.zero;
         linerotate = false;
+        linecontroller.Enable();
+      
+        linecontroller.LineControl.touchcontrol.started += ontouchdown;
+        linecontroller.LineControl.mousecontrol.started += ontouchdown;
+        linecontroller.LineControl.touchcontrol.performed += ontouch;
+        linecontroller.LineControl.mousecontrol.performed += ontouch;
+        linecontroller.LineControl.touchcontrol.canceled += ontouchup;
+        linecontroller.LineControl.mousecontrol.canceled += ontouchup;
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        //otherwise tyhe line rendere will move with player
-        if (!linerotate && !playermanager.playercanmove && !playermanager.isplayerdestroyed)
+        if (!linerotate && !playerManager.playercanmove && !playerManager.isplayerdestroyed)
         {
-
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                positions.Clear();
-             
-                //myedgecollier2d.points.cl = 1;
-                transform.position = new Vector3(player.transform.position.x + 0.25f, yminsprite, 0f);
-                mylinerenderer.SetPosition(0, Vector3.zero);
-                mylinerenderer.SetPosition(1, Vector3.zero);
-                mylinerenderer.transform.eulerAngles = Vector3.zero;
-                currentposition = Vector3.zero;
-                mylinerenderer.SetPosition(0, currentposition);
-            }
-            if (Input.GetMouseButton(0))
-            {
-                length = mylinerenderer.GetPosition(1).y - mylinerenderer.GetPosition(0).y;
-                if (length <= 5f)
-                {
-                    currentposition += (player.transform.up * 0.9f * Time.deltaTime);
-                    currentposition = new Vector3(0f, currentposition.y, 0f);
-                    if (mylinerenderer.positionCount <= 1)
-                    {
-
-                        mylinerenderer.positionCount++;
-                    }
-
-                    positions.Add(new Vector2(currentposition.x, currentposition.y));
-                    mylinerenderer.SetPosition(1, currentposition);
-                    myedgecollier2d.points = positions.ToArray();
-                }
-                else
-                {
-
-                    linerotate = true;
-                }
-            }
-
-            if (Input.GetMouseButtonUp(0))
-            {
-               
-                linerotate = true;
-            }
-
-
+          
+            stoplinestretch = true;
         }
+        else
+        {
+            
+            stoplinestretch = false;
+        }
+        if (linestretch == true)
+        {
+            DrawLine();
+        }
+        Linerotate();
+    }
+
+    private void Linerotate()
+    {
         if (linerotate)
         {
             angle = Vector3.Angle(player.transform.up, player.transform.right);
             percmoved = Mathf.MoveTowards(0f, angle, timer * 100f);
             timer += Time.deltaTime;
-            mylinerenderer.transform.eulerAngles = new Vector3(0f, 0f, -percmoved);
-
-            if (mylinerenderer.transform.eulerAngles.z == 270f)
+            linerenderer.transform.eulerAngles = new Vector3(0f, 0f, -percmoved);
+            if (linerenderer.transform.eulerAngles.z == 270f)
             {
 
-                playermanager.playercanmove = true;
+
+                playerManager.playercanmove = true;
                 linerotate = false;
                 timer = 0f;
-                playermanager.targetpos = new Vector3(player.transform.position.x + positions[positions.Count - 1].y+0.25f, player.transform.position.y, player.transform.position.z);
+                playerManager.targetpos = new Vector3(player.transform.position.x + positions[positions.Count - 1].y + 0.25f, player.transform.position.y, player.transform.position.z);
                 boxcollider2d.transform.position = new Vector3(transform.position.x + positions[positions.Count - 1].y, transform.position.y, player.transform.position.z);
 
             }
 
         }
     }
-  
 
-    //IEnumerator linerotatefalse()
-    //{
-    //    yield return new WaitForSeconds(1f);
-    //    linerotate = false;
-    //}
+    public void ontouchdown(InputAction.CallbackContext context)
+    {
+      
+        if (stoplinestretch && isgamestarted)
+        {
+            Debug.Log("here inside touch down");
+            StartDrawLine();
+        }
+    }
+    public void ontouch(InputAction.CallbackContext context)
+    {
+        if (stoplinestretch && isgamestarted)
+        {
+            linestretch = true;
+        }
+    }
+    public void ontouchup(InputAction.CallbackContext context)
+    {
+        if (stoplinestretch && isgamestarted)
+        {
+            linestretch = false;
+            linerotate = true;
+        }
+    }
+    public void StartDrawLine()
+    {
+        positions.Clear();
+
+
+        transform.position = new Vector3(player.transform.position.x + 0.25f, yminsprite, 0f);
+        linerenderer.SetPosition(0, Vector3.zero);
+        linerenderer.SetPosition(1, Vector3.zero);
+        linerenderer.transform.eulerAngles = Vector3.zero;
+        currentposition = Vector3.zero;
+        linerenderer.SetPosition(0, currentposition);
+    }
+    public void DrawLine()
+    {
+        length = linerenderer.GetPosition(1).y - linerenderer.GetPosition(0).y;
+        if (length <= 5f)
+        {
+            currentposition += (player.transform.up * 0.9f * Time.deltaTime);
+            currentposition = new Vector3(0f, currentposition.y, 0f);
+            if (linerenderer.positionCount <= 1)
+            {
+
+                linerenderer.positionCount++;
+            }
+
+            positions.Add(new Vector2(currentposition.x, currentposition.y));
+            linerenderer.SetPosition(1, currentposition);
+            edgecollier2d.points = positions.ToArray();
+        }
+        else
+        {
+
+            linerotate = true;
+        }
+    }
+
 }

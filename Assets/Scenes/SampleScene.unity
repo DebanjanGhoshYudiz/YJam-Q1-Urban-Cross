@@ -352,14 +352,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playercanmove: 0
   targetpos: {x: 0, y: 0, z: 0}
-  cameramove: {fileID: 0}
-  myrandomizeblock: {fileID: 0}
-  collidedgameobject: {fileID: 0}
   staycolliedegameobject: {fileID: 0}
   canmove: 0
-  timer: 0
-  cherryinstantiate: {fileID: 0}
-  istraight: 1
   isplayerdestroyed: 0
 --- !u!95 &122262699
 Animator:
@@ -1120,10 +1114,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c13ffc00d19e34641b6447ea64a2b03d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mylinerenderer: {fileID: 1647530916}
+  linerenderer: {fileID: 1647530916}
   currentposition: {x: 0, y: 0, z: 0}
   mindistance: 0.2
-  myedgecollier2d: {fileID: 724530809}
+  edgecollier2d: {fileID: 724530809}
   positions: []
   angle: 0
   player: {fileID: 888069414}
@@ -1131,6 +1125,8 @@ MonoBehaviour:
   targetpos: {x: 0, y: 0, z: 0}
   length: 0
   boxcollider2d: {fileID: 1396253746}
+  linestretch: 0
+  isgamestarted: 0
 --- !u!1 &888069414
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,14 +1249,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playercanmove: 0
   targetpos: {x: 0, y: 0, z: 0}
-  cameramove: {fileID: 0}
-  myrandomizeblock: {fileID: 0}
-  collidedgameobject: {fileID: 0}
   staycolliedegameobject: {fileID: 0}
   canmove: 0
-  timer: 0
-  cherryinstantiate: {fileID: 0}
-  istraight: 1
   isplayerdestroyed: 0
 --- !u!50 &888069419
 Rigidbody2D:
@@ -1535,17 +1525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbaffed9cb02f4699b7ff3eccf432dc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  halfHeight: 0
-  halfWidth: 0
-  refblock: {fileID: 0}
-  blocklist: []
-  targetpos: {x: 0, y: 0, z: 0}
   blockpositions: []
-  xmin: {x: 0, y: 0, z: 0}
-  <xmid>k__BackingField: {x: 0, y: 0, z: 0}
-  <xmax>k__BackingField: {x: 0, y: 0, z: 0}
-  xprev: {x: 0, y: 0, z: 0}
-  testobject: {fileID: 2059452044}
 --- !u!1 &1365784381
 GameObject:
   m_ObjectHideFlags: 0
