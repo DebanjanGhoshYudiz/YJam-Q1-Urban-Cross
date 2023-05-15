@@ -5,17 +5,18 @@ using UnityEngine;
 public class Backgroundrandomize : MonoBehaviour
 {
     public List<Material> environments;
-    Renderer renderer;
-    int environmentcount;
+    MeshRenderer meshrenderer;
+    public int environmentcount;
     // Start is called before the first frame update
     void Start()
     {
-        environmentcount = Random.Range(0, environments.Count + 1);
-        renderer = GetComponent<MeshRenderer>();
-        
+        environmentcount = Random.Range(0, environments.Count);
+        meshrenderer = GetComponent<MeshRenderer>();
+       
+        meshrenderer.material= environments[environmentcount];
 
-        //renderer.materials[0] = environments[environmentcount];
-        
+
+
     }
 
     // Update is called once per frame

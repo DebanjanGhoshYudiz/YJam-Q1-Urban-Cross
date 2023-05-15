@@ -8,13 +8,13 @@ public class PlayerManager : MonoBehaviour
     public bool playercanmove=false;
     public Vector3 targetpos;
     GameObject collidedgameobject = null;
-    public GameObject staycolliedegameobject=null;
-    public bool canmove = false;
+    public bool platformpresent = false;
     float timer = 0f;
     bool istraight = true;
     public bool isplayerdestroyed=false;
     public event Action Targetreachedevent;
     public static PlayerManager Instance;
+    public bool delay=false;
     private void Awake()
     {
         Instance = this;
@@ -26,36 +26,25 @@ public class PlayerManager : MonoBehaviour
        
     }
 
-
-//    in line renderer add +0.25f to the target posremove the mid point script from playerin physics 2d matrix disable collision between line renderer layer and playersmall the size of boxcollider in line redndereradd boxcollider on both mid and line renderer and add dynamic rigidbodychange on collider to ontrigger in cherry
-//for ui change camera x value to 4 and size 4, otherwise 6
-    // Update is called once per frame
     void Update()
     {
         transform.eulerAngles = Vector3.zero;
         if (playercanmove && !isplayerdestroyed)
         {
             targetpos = new Vector3(targetpos.x, transform.position.y, targetpos.z);
-            transform.position = Vector3.MoveTowards(transform.position, targetpos, Time.deltaTime * 2f);
+            movetowardstarget(transform.position, targetpos);
             if (transform.position == targetpos )
             {
 
-                if (canmove)
+                if (platformpresent)
                 {
                     if (Targetreachedevent != null)
                     {
                         Targetreachedevent();
                         playercanmove = false;
-                        canmove = false;
+                        platformpresent = false;
                     }
-                        //////////////////////////////////////
-                    //    myrandomizeblock.setminmax();
-                    //myrandomizeblock.reshuffle();
-                    //cameramove.settargetpos();
-                    //cherryinstantiate.throwcherry();
-                    //playercanmove = false;
-                    //canmove = false;
-                    //////////////////////////////////////
+                       
                 }
                 if (collidedgameobject == null)
                 {
@@ -63,17 +52,23 @@ public class PlayerManager : MonoBehaviour
                 }
             }
             
-          
         }
         if(isplayerdestroyed)
         {
             Vector3 targetpos;
             targetpos = transform.position - Vector3.up * 20f;
-            transform.position = Vector3.MoveTowards(transform.position, targetpos, Time.deltaTime * 10f);
+            movetowardstarget(transform.position, targetpos);
+            if (delay == false)
+            {
+                delay = true;
+                StartCoroutine(Gameoverscreen());
+            }
+
+
 
         }
-        //ifplayer can move than only mirror the positin on mousebutton down
-        if (Input.GetMouseButtonDown(0))
+
+        if (Input.GetMouseButtonDown(0))
         {
             if (playercanmove && !isplayerdestroyed)
             {
@@ -93,13 +88,20 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+  IEnumerator Gameoverscreen()
+    {
+        yield return new WaitForSeconds(2f);
+        CanvasManager.Instance.Gameover();
+        delay = false;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
         if (collision.gameObject != collidedgameobject)
         {
             collidedgameobject = collision.collider.gameObject;
-            canmove = true;
+            platformpresent = true;
            
         }
         if(collision.gameObject.GetComponent<Blocks>())
@@ -108,40 +110,34 @@ public class PlayerManager : MonoBehaviour
             {
                 isplayerdestroyed = true;
                 playercanmove = false;
-                //playerdestroy();
+        
             }
         }
 
-       //if the player collides and scale is backwards stop the game
+      
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
         
-        //staycolliedegameobject = collision.collider.gameObject;
+      
         if (collision.gameObject != null && playercanmove == false && !isplayerdestroyed)
         {
-            
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(collision.collider.bounds.max.x - 0.3f, transform.position.y, transform.position.z), timer * 2f);
+            targetpos = new Vector3(collision.collider.bounds.max.x - 0.3f, transform.position.y, transform.position.z);
+            movetowardstarget(transform.position, targetpos);
             timer += Time.deltaTime;
         }
-        //else
-        //{
-        //    staycolliedegameobject = null;
-        //}
+        
 
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         collidedgameobject = null;
-         canmove = false;
+        platformpresent = false;
     }
-    //public void playerdestroy()
-    //{
-       
-    //    Vector3 targetpos;
-    //    targetpos = transform.position - Vector3.up * 20f;
-    //    transform.position = Vector3.MoveTowards(transform.position, targetpos, Time.deltaTime*10f);
-
-    //}
+    
+    public void movetowardstarget(Vector3 presentpos,Vector3 targetpos)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, targetpos, Time.deltaTime * 2f);
+    }
 
 }

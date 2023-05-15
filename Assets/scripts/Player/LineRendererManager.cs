@@ -13,7 +13,7 @@ public class LineRendererManager : MonoBehaviour
     public List<Vector2> positions;
     public float angle;
     float timer = 0f;
-    bool linerotate = false;
+    public bool linerotate = false;
     float percmoved;
     [SerializeField] GameObject player;
     public float yminsprite;
@@ -25,13 +25,13 @@ public class LineRendererManager : MonoBehaviour
     public LineController linecontroller;
     bool stoplinestretch = true;
     public bool linestretch = false;
-    public bool isgamestarted=true;
+    public bool isgamestarted;
     // Start is called before the first frame update
     [System.Obsolete]
     void Start()
     {
         linecontroller = new LineController();
-        isgamestarted = true;
+        isgamestarted = false;
         playerManager = FindObjectOfType<PlayerManager>();
         linerenderer.SetWidth(0.1f, 0.1f);
         yminsprite = player.GetComponent<SpriteRenderer>().bounds.min.y;
@@ -73,6 +73,7 @@ public class LineRendererManager : MonoBehaviour
     {
         if (linerotate)
         {
+
             angle = Vector3.Angle(player.transform.up, player.transform.right);
             percmoved = Mathf.MoveTowards(0f, angle, timer * 100f);
             timer += Time.deltaTime;
@@ -97,7 +98,7 @@ public class LineRendererManager : MonoBehaviour
       
         if (stoplinestretch && isgamestarted)
         {
-            Debug.Log("here inside touch down");
+          
             StartDrawLine();
         }
     }

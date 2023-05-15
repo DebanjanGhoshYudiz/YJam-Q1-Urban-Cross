@@ -10,7 +10,6 @@ public class PickupManager : MonoBehaviour
     Vector3 xmin;
     Vector3 xmax;
     float randnumber;
-    float xmaxworldpos;
     public static PickupManager Instance;
     //randomizeblock myrandomizeblock;
     // Start is called before the first frame update
@@ -22,7 +21,6 @@ public class PickupManager : MonoBehaviour
     {
         cherrygameobject = Instantiate(cherry,Vector3.zero,Quaternion.identity);
         cherrygameobject.SetActive(false);
-        xmaxworldpos = Camera.main.ViewportToWorldPoint(new Vector3(1,0)).x;
         PlayerManager.Instance.Targetreachedevent += throwcherry;
         //myrandomizeblock = FindObjectOfType<randomizeblock>();
 
@@ -57,7 +55,7 @@ public class PickupManager : MonoBehaviour
             {
                 y = -1.87f;
             }
-            cherrygameobject.transform.position = new Vector3(Random.Range(xmin.x+2f,xmax.x-2f), y, 0f);
+            cherrygameobject.transform.position = new Vector3(Random.Range(xmin.x+2.5f,xmax.x-3f), y, 0f);
         }
     }
 

@@ -33,6 +33,8 @@ public class BackgroundManager : MonoBehaviour
 
         if (transform.position != targetpos)
         {
+            //distance between xmid and xmax
+            //xmid -xmax is max threshold
             transform.position = Vector3.MoveTowards(transform.position, targetpos, Time.deltaTime * 20f);
             environment.transform.position = Vector3.MoveTowards(environment.transform.position, environmenttargetpos, Time.deltaTime * 20f);
         }
@@ -41,6 +43,8 @@ public class BackgroundManager : MonoBehaviour
     }
     public void settargetpos()
     {
+        //problerm may arise later
+        Scoringsystem.Instance.Incrementgameplayscore();
         targetpos = new Vector3(transform.position.x + halfWidth, transform.position.y, transform.position.z);
         environmenttargetpos = new Vector3(environment.transform.position.x + halfWidth, environment.transform.position.y, environment.transform.position.z);
     }

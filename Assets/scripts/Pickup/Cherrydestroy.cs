@@ -30,5 +30,6 @@ public class Cherrydestroy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         gameObject.active = false;
+        Scoringsystem.Instance.Incrementcherryscore();
     }
 }
