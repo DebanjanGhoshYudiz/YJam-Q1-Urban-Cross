@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cherryinstantiate : MonoBehaviour
+public class PickupManager : MonoBehaviour
 {
     [SerializeField] GameObject cherry;
     GameObject cherrygameobject;
@@ -11,14 +11,20 @@ public class Cherryinstantiate : MonoBehaviour
     Vector3 xmax;
     float randnumber;
     float xmaxworldpos;
-    randomizeblock myrandomizeblock;
+    public static PickupManager Instance;
+    //randomizeblock myrandomizeblock;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         cherrygameobject = Instantiate(cherry,Vector3.zero,Quaternion.identity);
         cherrygameobject.SetActive(false);
         xmaxworldpos = Camera.main.ViewportToWorldPoint(new Vector3(1,0)).x;
-        myrandomizeblock = FindObjectOfType<randomizeblock>();
+        PlayerManager.Instance.Targetreachedevent += throwcherry;
+        //myrandomizeblock = FindObjectOfType<randomizeblock>();
 
     }
 
@@ -34,8 +40,8 @@ public class Cherryinstantiate : MonoBehaviour
     {
 
         
-        xmin = myrandomizeblock.xmid;
-        xmax = myrandomizeblock.xmax;
+        xmin = BlockManager.Instance.xmid;
+        xmax = BlockManager.Instance.xmax;
        
         randnumber = Random.Range(1,4);
         if ((randnumber==1 || randnumber==2 )&& cherrygameobject.active==false)

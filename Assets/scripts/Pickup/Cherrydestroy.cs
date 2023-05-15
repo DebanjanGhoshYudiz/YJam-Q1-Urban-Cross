@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cherrydestroy : MonoBehaviour
+public class Cherrydestroy : MonoBehaviour
 {
     float xmin;
     float halfHeight;
@@ -26,9 +26,9 @@ public class cherrydestroy : MonoBehaviour
 
         //}
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+  
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-
         gameObject.active = false;
     }
 }

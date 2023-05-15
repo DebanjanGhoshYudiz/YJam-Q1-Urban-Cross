@@ -1,29 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playermovement : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
     public bool playercanmove;
     public Vector3 targetpos;
-    cameramove cameramove;
-    randomizeblock myrandomizeblock;
     GameObject collidedgameobject = null;
     public GameObject staycolliedegameobject=null;
     public bool canmove = false;
     float timer = 0f;
-    Cherryinstantiate cherryinstantiate;
     bool istraight = true;
     public bool isplayerdestroyed=false;
+    public event Action Targetreachedevent;
+    public static PlayerManager Instance;
+    private void Awake()
+    {
+        Instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
 
-        myrandomizeblock = FindObjectOfType<randomizeblock>();
-        cameramove = FindObjectOfType<cameramove>();
-        cherryinstantiate = FindObjectOfType<Cherryinstantiate>();
+       
     }
 
+
+//    in line renderer add +0.25f to the target posremove the mid point script from playerin physics 2d matrix disable collision between line renderer layer and playersmall the size of boxcollider in line redndereradd boxcollider on both mid and line renderer and add dynamic rigidbodychange on collider to ontrigger in cherry
+//for ui change camera x value to 4 and size 4, otherwise 6
     // Update is called once per frame
     void Update()
     {
@@ -37,13 +42,19 @@ public class playermovement : MonoBehaviour
 
                 if (canmove)
                 {
-                    //////////////////////////////////////
-                    myrandomizeblock.setminmax();
-                    myrandomizeblock.reshuffle();
-                    cameramove.settargetpos();
-                    cherryinstantiate.throwcherry();
-                    playercanmove = false;
-                    canmove = false;
+                    if (Targetreachedevent != null)
+                    {
+                        Targetreachedevent();
+                        playercanmove = false;
+                        canmove = false;
+                    }
+                        //////////////////////////////////////
+                    //    myrandomizeblock.setminmax();
+                    //myrandomizeblock.reshuffle();
+                    //cameramove.settargetpos();
+                    //cherryinstantiate.throwcherry();
+                    //playercanmove = false;
+                    //canmove = false;
                     //////////////////////////////////////
                 }
                 if (collidedgameobject == null)
@@ -91,7 +102,7 @@ public class playermovement : MonoBehaviour
             canmove = true;
            
         }
-        if(collision.gameObject.GetComponent<blocks>())
+        if(collision.gameObject.GetComponent<Blocks>())
         {
             if(!istraight)
             {

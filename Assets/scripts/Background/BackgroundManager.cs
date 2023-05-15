@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cameramove : MonoBehaviour
+public class BackgroundManager : MonoBehaviour
 {
     [SerializeField] GameObject environment;
     public Renderer bgrenderer;
@@ -12,13 +12,18 @@ public class cameramove : MonoBehaviour
     Vector3 targetpos;
     Vector3 environmenttargetpos;
     public bool cameramotion = false;
-
+    public static BackgroundManager Instance;
+    private void Awake()
+    {
+        Instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
         targetpos = Camera.main.transform.position;
         halfHeight = Camera.main.orthographicSize;
         halfWidth = Camera.main.aspect * halfHeight;
+        PlayerManager.Instance.Targetreachedevent += settargetpos;
     }
 
     // Update is called once per frame

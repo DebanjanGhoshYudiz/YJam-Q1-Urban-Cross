@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class randomizeblock : MonoBehaviour
+public class BlockManager : MonoBehaviour
 {
 
     /*  [SerializeField] GameObject environement;*/
     float halfHeight;
     float halfWidth;
-    public GameObject refblock;
-    List<randomizeblock> blocklist;
     Vector3 targetpos;
     public List<Transform> blockpositions;
     Vector3 xmin;
@@ -26,8 +24,14 @@ public class randomizeblock : MonoBehaviour
         private set;
     }
     Vector3 xprev;
-  
-    [SerializeField] GameObject testobject;
+    public static BlockManager Instance;
+    private void Awake()
+    {
+        Instance = this;
+        PlayerManager.Instance.Targetreachedevent += setminmax;
+        PlayerManager.Instance.Targetreachedevent += reshuffle;
+    }
+    //[SerializeField] GameObject testobject;
     // Start is called before the first frame update
     void Start()
     {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class backgroundrandomize : MonoBehaviour
+public class Backgroundrandomize : MonoBehaviour
 {
     public List<Material> environments;
     Renderer renderer;

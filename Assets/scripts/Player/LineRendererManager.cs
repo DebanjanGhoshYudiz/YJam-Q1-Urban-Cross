@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class linerenderer : MonoBehaviour
+public class LineRendererManager : MonoBehaviour
 {
     public LineRenderer mylinerenderer;
     public Vector3 currentposition;
@@ -16,7 +16,8 @@ public class linerenderer : MonoBehaviour
     float percmoved;
     [SerializeField] GameObject player;
     public float yminsprite;
-    playermovement myplayermovement;
+    //playermovement myplayermovement;
+    PlayerManager playermanager;
     public Vector3 targetpos;
     public float length;
     public BoxCollider2D boxcollider2d;
@@ -25,7 +26,7 @@ public class linerenderer : MonoBehaviour
     [System.Obsolete]
     void Start()
     {
-        myplayermovement = FindObjectOfType<playermovement>();
+        playermanager = FindObjectOfType<PlayerManager>();
         mylinerenderer.SetWidth(0.1f, 0.1f);
         yminsprite = player.GetComponent<SpriteRenderer>().bounds.min.y;
         currentposition = Vector3.zero;
@@ -37,7 +38,7 @@ public class linerenderer : MonoBehaviour
     {
 
         //otherwise tyhe line rendere will move with player
-        if (!linerotate && !myplayermovement.playercanmove && !myplayermovement.isplayerdestroyed)
+        if (!linerotate && !playermanager.playercanmove && !playermanager.isplayerdestroyed)
         {
 
 
@@ -95,10 +96,10 @@ public class linerenderer : MonoBehaviour
             if (mylinerenderer.transform.eulerAngles.z == 270f)
             {
 
-                myplayermovement.playercanmove = true;
+                playermanager.playercanmove = true;
                 linerotate = false;
                 timer = 0f;
-                myplayermovement.targetpos = new Vector3(player.transform.position.x + positions[positions.Count - 1].y, player.transform.position.y, player.transform.position.z);
+                playermanager.targetpos = new Vector3(player.transform.position.x + positions[positions.Count - 1].y+0.25f, player.transform.position.y, player.transform.position.z);
                 boxcollider2d.transform.position = new Vector3(transform.position.x + positions[positions.Count - 1].y, transform.position.y, player.transform.position.z);
 
             }
