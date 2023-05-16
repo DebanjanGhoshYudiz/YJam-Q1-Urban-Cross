@@ -40,8 +40,7 @@ public class BlockManager : MonoBehaviour
     {
         Instance = this;
         FindObjectOfType<PlayerManager>().Targetreachedevent += Blockinstantiate;
-        //PlayerManager.Instance.Targetreachedevent += setminmax;
-        //PlayerManager.Instance.Targetreachedevent += reshuffle;
+      
     }
     //[SerializeField] GameObject testobject;
     // Start is called before the first frame update
@@ -52,31 +51,7 @@ public class BlockManager : MonoBehaviour
         halfWidth = Camera.main.aspect * halfHeight;
       
 
-        //foreach (Transform child in gameObject.transform)
-        //{
-
-        //    if (child.transform.position.x < Camera.main.transform.position.x && (child.transform.position.x > (Camera.main.transform.position.x - halfWidth)))
-        //    {
-        //        xmin = child.transform.position;
-        //    }
-        //    else
-        //    if ((child.transform.position.x > Camera.main.transform.position.x) && (child.transform.position.x < (Camera.main.transform.position.x + halfWidth)))
-        //    {
-        //        xmid = child.transform.position;
-        //    }
-        //    else
-        //    if (child.transform.position.x > (Camera.main.transform.position.x + halfWidth))
-        //    {
-        //        xmax = child.transform.position;
-        //    }
-        //    else
-        //    if (child.transform.position.x < (Camera.main.transform.position.x - halfWidth))
-        //    {
-        //        xprev = child.transform.position;
-        //    }
-
-        //    blockpositions.Add(child.transform);
-        //}
+       
     }
 
 
@@ -94,34 +69,7 @@ public class BlockManager : MonoBehaviour
 
         blockgameobject.transform.localScale = new Vector3(Random.Range(0.3f, 1f), blockgameobject.transform.localScale.y, blockgameobject.transform.localScale.z);
     }
-    //public void setminmax()
-    //{
-
-
-        
-    //    //float xthreshold = xmid.x - xmin.x;
-    //    xmin = xmin + new Vector3(halfWidth, 0f, 0f);
-    //    xmid = xmid + new Vector3(halfWidth, 0f, 0f);
-    //    //xmax = xmax + new Vector3(halfWidth, 0f, 0f);
-    //    xmax= xmid + new Vector3(Random.Range(xmid.x+2f,halfWidth), 0f, 0f);
-    //    //xmax will be greter tghan xwitdh
-    //    //xmax = new Vector3(Camera.main.transform.position.x + 2*halfWidth+Random.Range(3F,6F), xmax.y, xmax.z);
-    //    xprev = xprev + new Vector3(halfWidth, 0f, 0f);
-    //}
-
-    //public void reshuffle()
-    //{
-    //    foreach (Transform block in gameObject.transform)
-    //    {
-    //        if (block.transform.position.x <= xprev.x)
-    //        {
-    //            randomizesize(block.gameObject);
-    //            //we can change in xmax
-    //            block.transform.position = xmax;
-
-    //        }
-    //    }
-    //}
+  
     public void Blockinstantiate()
     {
 

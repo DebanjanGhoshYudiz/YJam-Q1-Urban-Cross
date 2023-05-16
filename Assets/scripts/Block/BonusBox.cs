@@ -18,7 +18,7 @@ public class BonusBox : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        Debug.Log("here in +1"+collision.collider.gameObject.name);
+        Scoringsystem.Instance.Incrementgameplayscore();
 
         //    Debug.Log("here in +1");
         //}

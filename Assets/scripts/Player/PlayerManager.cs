@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
 {
     public bool playercanmove=false;
     public Vector3 targetpos;
-    GameObject collidedgameobject = null;
+    public GameObject collidedgameobject = null;
     public bool platformpresent = false;
     float timer = 0f;
     bool istraight = true;
@@ -28,8 +28,9 @@ public class PlayerManager : MonoBehaviour
 
     }
 
-    void Update()
+    void FixedUpdate()
     {
+
         transform.eulerAngles = Vector3.zero;
         if (playercanmove && !isplayerdestroyed)
         {
@@ -50,6 +51,7 @@ public class PlayerManager : MonoBehaviour
                 }
                 if (collidedgameobject == null)
                 {
+
                     isplayerdestroyed = true;
                 }
             }
@@ -57,7 +59,7 @@ public class PlayerManager : MonoBehaviour
         }
         if(isplayerdestroyed)
         {
-
+            
             lineRendererManager.linerotatereverse = true;
             Vector3 targetpos;
             targetpos = transform.position - Vector3.up * 20f;
@@ -67,11 +69,12 @@ public class PlayerManager : MonoBehaviour
                 delay = true;
                 StartCoroutine(Gameoverscreen());
             }
-
-
-
         }
-
+        else
+        {
+            
+            delay =false;
+        }
         if (Input.GetMouseButtonDown(0))
         {
             if (playercanmove && !isplayerdestroyed)
@@ -92,18 +95,24 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-  IEnumerator Gameoverscreen()
+    
+    IEnumerator Gameoverscreen()
     {
+      
         yield return new WaitForSeconds(2f);
-        CanvasManager.Instance.Gameover();
+        if (isplayerdestroyed)
+        {
+            CanvasManager.Instance.Gameover();
+        }
         delay = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+       
         if (collision.gameObject != collidedgameobject)
         {
+            
             collidedgameobject = collision.collider.gameObject;
             platformpresent = true;
            
@@ -112,7 +121,8 @@ public class PlayerManager : MonoBehaviour
         {
             if(!istraight)
             {
-                isplayerdestroyed = true;
+                istraight = true;
+                 isplayerdestroyed = true;
                 playercanmove = false;
         
             }
@@ -122,8 +132,6 @@ public class PlayerManager : MonoBehaviour
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        
-      
         if (collision.gameObject != null && playercanmove == false && !isplayerdestroyed)
         {
             targetpos = new Vector3(collision.collider.bounds.max.x - 0.3f, transform.position.y, transform.position.z);

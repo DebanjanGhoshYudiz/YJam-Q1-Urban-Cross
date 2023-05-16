@@ -48,7 +48,6 @@ public class PickupManager : MonoBehaviour
         Vector3 secondpos = BlockManager.Instance.secondpos;
         Vector3 thirdpos = BlockManager.Instance.thirdpos;
         float difference = thirdpos.x - secondpos.x;
-        Debug.Log("the difference " + difference);
         if (thirdpos.x - secondpos.x > 2f)
         {
             cherrygameobject.SetActive(true);

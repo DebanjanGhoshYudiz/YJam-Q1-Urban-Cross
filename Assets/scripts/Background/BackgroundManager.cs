@@ -9,7 +9,7 @@ public class BackgroundManager : MonoBehaviour
     public float speed;
     float halfHeight;
     float halfWidth;
-    Vector3 targetpos;
+    public Vector3 targetpos;
     Vector3 environmenttargetpos;
     public bool cameramotion = false;
     public static BackgroundManager Instance;
@@ -46,6 +46,7 @@ public class BackgroundManager : MonoBehaviour
     }
     public void settargetpos()
     {
+        
         //problerm may arise later
         Scoringsystem.Instance.Incrementgameplayscore();
         xcamera = BlockManager.Instance.diff;

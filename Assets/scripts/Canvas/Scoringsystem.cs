@@ -43,5 +43,9 @@ public class Scoringsystem : MonoBehaviour
         gameplayscore += 1;
         Gameplayscoretext.text = gameplayscore.ToString();
     }
-
+    public void gameplayscoreset()
+    {
+        gameplayscore = 0;
+        Gameplayscoretext.text = gameplayscore.ToString();
+    }
 }
