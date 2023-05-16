@@ -37,26 +37,25 @@ public class PickupManager : MonoBehaviour
     public void throwcherry()
     {
 
-        
+
         xmin = BlockManager.Instance.xmid;
         xmax = BlockManager.Instance.xmax;
-       
-        randnumber = Random.Range(1,4);
-        if ((randnumber==1 || randnumber==2 )&& cherrygameobject.active==false)
+
+        randnumber = Random.Range(1, 4);
+        /* if ((randnumber==1 || randnumber==2 || randnumber == 3) && cherrygameobject.active==false)
+         {*/
+
+        Vector3 secondpos = BlockManager.Instance.secondpos;
+        Vector3 thirdpos = BlockManager.Instance.thirdpos;
+        float difference = thirdpos.x - secondpos.x;
+        Debug.Log("the difference " + difference);
+        if (thirdpos.x - secondpos.x > 2f)
         {
-           
             cherrygameobject.SetActive(true);
-            if(randnumber==1)
-            {
-                y = -2.5f;
-            }
-            else
-            if(randnumber == 2)
-            {
-                y = -1.87f;
-            }
-            cherrygameobject.transform.position = new Vector3(Random.Range(xmin.x+2.5f,xmax.x-3f), y, 0f);
+            y = -2.5f;
+            cherrygameobject.transform.position = new Vector3(Random.Range(secondpos.x + 1f, thirdpos.x - 1f), y, 0f);
         }
     }
-
 }
+
+

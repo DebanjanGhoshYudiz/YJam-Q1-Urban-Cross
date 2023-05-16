@@ -26,12 +26,14 @@ public class LineRendererManager : MonoBehaviour
     bool stoplinestretch = true;
     public bool linestretch = false;
     public bool isgamestarted;
+    public bool linerotatereverse=false;
+    
     // Start is called before the first frame update
     [System.Obsolete]
     void Start()
     {
         linecontroller = new LineController();
-        isgamestarted = false;
+        isgamestarted = true;
         playerManager = FindObjectOfType<PlayerManager>();
         linerenderer.SetWidth(0.1f, 0.1f);
         yminsprite = player.GetComponent<SpriteRenderer>().bounds.min.y;
@@ -90,6 +92,22 @@ public class LineRendererManager : MonoBehaviour
 
             }
 
+        }
+        if (linerotatereverse)
+        {
+            if (linerenderer.transform.eulerAngles.z != 180)
+            {
+                angle = Vector3.Angle(player.transform.up, player.transform.right);
+                percmoved = Mathf.MoveTowards(270, 180, timer * 100f);
+                timer += Time.deltaTime;
+                linerenderer.transform.eulerAngles = new Vector3(0f, 0f, percmoved);
+                if (linerenderer.transform.eulerAngles.z == 180)
+                {
+
+                    linerotatereverse = false;
+                    timer = 0f;
+                }
+            }
         }
     }
 

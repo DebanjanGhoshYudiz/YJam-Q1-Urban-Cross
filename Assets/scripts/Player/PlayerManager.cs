@@ -15,6 +15,7 @@ public class PlayerManager : MonoBehaviour
     public event Action Targetreachedevent;
     public static PlayerManager Instance;
     public bool delay=false;
+    LineRendererManager lineRendererManager;
     private void Awake()
     {
         Instance = this;
@@ -22,8 +23,9 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        lineRendererManager = FindObjectOfType<LineRendererManager>();
 
-       
+
     }
 
     void Update()
@@ -55,6 +57,8 @@ public class PlayerManager : MonoBehaviour
         }
         if(isplayerdestroyed)
         {
+
+            lineRendererManager.linerotatereverse = true;
             Vector3 targetpos;
             targetpos = transform.position - Vector3.up * 20f;
             movetowardstarget(transform.position, targetpos);
