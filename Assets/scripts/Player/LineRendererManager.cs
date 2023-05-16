@@ -87,7 +87,10 @@ public class LineRendererManager : MonoBehaviour
                 playerManager.playercanmove = true;
                 linerotate = false;
                 timer = 0f;
-                playerManager.targetpos = new Vector3(player.transform.position.x + positions[positions.Count - 1].y + 0.25f, player.transform.position.y, player.transform.position.z);
+                if (positions.Count > 1)
+                {
+                    playerManager.targetpos = new Vector3(player.transform.position.x + positions[positions.Count - 1].y + 0.25f, player.transform.position.y, player.transform.position.z);
+                }
                 boxcollider2d.transform.position = new Vector3(transform.position.x + positions[positions.Count - 1].y, transform.position.y, player.transform.position.z);
 
             }
@@ -152,7 +155,7 @@ public class LineRendererManager : MonoBehaviour
         length = linerenderer.GetPosition(1).y - linerenderer.GetPosition(0).y;
         if (length <= 5f)
         {
-            currentposition += (player.transform.up * 0.9f * Time.deltaTime);
+            currentposition += (player.transform.up * 1.5f * Time.deltaTime);
             currentposition = new Vector3(0f, currentposition.y, 0f);
             if (linerenderer.positionCount <= 1)
             {
