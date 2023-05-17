@@ -59,5 +59,6 @@ public enum ScreenType
 {
     Home,
     GamePlay,
-    GameOver
+    GameOver,
+    PlayerShop
 }

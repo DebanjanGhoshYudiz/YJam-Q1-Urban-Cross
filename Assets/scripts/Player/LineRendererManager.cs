@@ -106,7 +106,6 @@ public class LineRendererManager : MonoBehaviour
             {
                 threshold = 180f;
             }
-            Debug.Log(linerenderer.transform.eulerAngles);
             if (linerenderer.transform.eulerAngles.z != threshold)
             {
                 

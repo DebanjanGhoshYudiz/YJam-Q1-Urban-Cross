@@ -28,7 +28,7 @@ public class PlayerManager : MonoBehaviour
 
     }
 
-    void FixedUpdate()
+    void Update()
     {
 
         transform.eulerAngles = Vector3.zero;
@@ -62,6 +62,8 @@ public class PlayerManager : MonoBehaviour
             
             lineRendererManager.linerotatereverse = true;
             Vector3 targetpos;
+            Savesystem.Instance.saveplayervalues();
+            Scoringsystem.Instance.highscore();
             targetpos = transform.position - Vector3.up * 20f;
             movetowardstarget(transform.position, targetpos);
             if (delay == false)
@@ -151,5 +153,6 @@ public class PlayerManager : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, targetpos, Time.deltaTime * 2f);
     }
+    
 
 }
