@@ -43,6 +43,7 @@ public class Shopplayerdetail : MonoBehaviour
     }
     public void spriteclicked()
     {
+        Debug.Log("here");
         Shopsystem.Instance.spritebuy(this);
     }
 }

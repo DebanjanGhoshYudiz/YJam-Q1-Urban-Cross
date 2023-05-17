@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Shopsystem : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class Shopsystem : MonoBehaviour
     }
     public void spritebuy(Shopplayerdetail shopplayerdetail)
     {
-       
+     
         if (buycheck(shopplayerdetail) && shopplayerdetail.spritestate == Spritestate.locked)
         {
             
@@ -34,18 +35,23 @@ public class Shopsystem : MonoBehaviour
             Savesystem.Instance.spritestates[shopplayerdetail.childindex] = shopplayerdetail.spritestate.ToString();
             Savesystem.Instance.saveplayervalues();
              shopplayerdetail.activatesprite();
+            Getplayersprite playerspritegameobject = shopplayerdetail.GetComponentInChildren<Getplayersprite>();
+            Sprite playersprite = playerspritegameobject.GetComponent<Image>().sprite;
+            PlayerManager.Instance.changesprite(playersprite);
             //also one condition to save the sprite
 
 
 
         }
+       
         else
         {
             if (shopplayerdetail.spritestate == Spritestate.unlocked)
             {
-                
-
-
+                Getplayersprite playerspritegameobject = shopplayerdetail.GetComponentInChildren<Getplayersprite>();
+                Sprite playersprite = playerspritegameobject.GetComponent<Image>().sprite;
+                PlayerManager.Instance.changesprite(playersprite);
+                float index = shopplayerdetail.childindex;
             }
         }
       

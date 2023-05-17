@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -152,6 +153,11 @@ public class PlayerManager : MonoBehaviour
     public void movetowardstarget(Vector3 presentpos,Vector3 targetpos)
     {
         transform.position = Vector3.MoveTowards(transform.position, targetpos, Time.deltaTime * 2f);
+    }
+    public void changesprite(Sprite sprite)
+    {
+        Debug.Log(sprite);
+        gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
     }
     
 

@@ -14,6 +14,7 @@ public class Savedata
     public float gamplayhighscore = 0;
     //public float playershopno = 0;
     public List<string> spritestatesdata;
+    public int currentplayerindex;
    
 }
 public class Savesystem : MonoBehaviour
@@ -53,6 +54,7 @@ public class Savesystem : MonoBehaviour
         Scoringsystem.Instance.cherryscore = cherryscore;
         Scoringsystem.Instance.highscorevalue = highscore;
         FindObjectOfType<Playerlockunlockdetails>().assignlockunlockdetails();
+       
         
     }
 
@@ -68,7 +70,7 @@ public class Savesystem : MonoBehaviour
         savedata.gamplayhighscore = highscore;
         savedata.spritestatesdata = spritestates;
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/debanjan10.fun";
+        string path = Application.persistentDataPath + "/debanjan12.fun";
         FileStream stream = new FileStream(path, FileMode.Create);
         formatter.Serialize(stream, savedata);
         stream.Close();
@@ -76,7 +78,7 @@ public class Savesystem : MonoBehaviour
     public Savedata loadplayervalues()
     {
 
-        string path = Application.persistentDataPath + "/debanjan10.fun";
+        string path = Application.persistentDataPath + "/debanjan12.fun";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
