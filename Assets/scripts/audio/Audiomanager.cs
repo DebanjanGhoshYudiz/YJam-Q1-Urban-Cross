@@ -6,6 +6,7 @@ public class Audiomanager : MonoBehaviour
 {
     [SerializeField] AudioClip[] Backgroundaudioclips;
     AudioClip backgroundclip;
+    [SerializeField] AudioClip lineblopsound;
     AudioSource audiosource;
     int randomint;
     // Start is called before the first frame update
@@ -23,4 +24,11 @@ public class Audiomanager : MonoBehaviour
     {
         
     }
+
+    public void linemakesound()
+    {
+        audiosource.clip = lineblopsound;
+        audiosource.Play();
+    }
+    
 }
