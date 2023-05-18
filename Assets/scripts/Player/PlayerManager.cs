@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +20,7 @@ public class PlayerManager : MonoBehaviour
     Animator animator;
     private void Awake()
     {
+        Application.targetFrameRate = 500;
         Instance = this;
         animator = GetComponent<Animator>();
     }
@@ -65,7 +65,7 @@ public class PlayerManager : MonoBehaviour
         }
         if(isplayerdestroyed)
         {
-            
+            animator.SetBool("Run", false);
             lineRendererManager.linerotatereverse = true;
             Vector3 targetpos;
             Savesystem.Instance.saveplayervalues();
@@ -91,7 +91,7 @@ public class PlayerManager : MonoBehaviour
                 {
                     istraight = false;
                     transform.localScale = new Vector3(transform.localScale.x, -0.5f, transform.localScale.z);
-                    transform.position = new Vector3(transform.position.x, -2.5f, transform.position.z);
+                    transform.position = new Vector3(transform.position.x, -2.45f, transform.position.z);
                 }
                 else if (transform.localScale.y == -0.5)
                 {
@@ -160,7 +160,7 @@ public class PlayerManager : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, targetpos, Time.deltaTime * 2f);
     }
-    public void changesprite(Sprite sprite, AnimatorController spriteanimationcontroller)
+    public void changesprite(Sprite sprite, RuntimeAnimatorController spriteanimationcontroller)
     {
         gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
         gameObject.GetComponent<Animator>().runtimeAnimatorController = spriteanimationcontroller;

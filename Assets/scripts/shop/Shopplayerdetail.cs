@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class Shopplayerdetail : MonoBehaviour
@@ -11,7 +10,7 @@ public class Shopplayerdetail : MonoBehaviour
     public GameObject lockedgameobject;
     public GameObject unlockedgameobject;
     public int childindex;
-   public AnimatorController animationcontoller;
+   public RuntimeAnimatorController animationcontoller;
     //public Sprite 
     //locked screen and unlocked screen sprite
     // Start is called before the first frame update

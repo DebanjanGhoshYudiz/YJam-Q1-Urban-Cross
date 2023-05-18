@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -48,7 +47,7 @@ public class Playerlockunlockdetails : MonoBehaviour
                         
                         Getplayersprite playerspritegameobject = spritestategameobject.GetComponentInChildren<Getplayersprite>();
                         Sprite playersprite = playerspritegameobject.GetComponent<Image>().sprite;
-                        AnimatorController spriteanimatiocontroller = spritestategameobject.animationcontoller;
+                        RuntimeAnimatorController spriteanimatiocontroller = spritestategameobject.animationcontoller;
                         PlayerManager.Instance.changesprite(playersprite, spriteanimatiocontroller);
                         //change the animation sprite here
                     }
@@ -80,7 +79,7 @@ public class Playerlockunlockdetails : MonoBehaviour
                     Savesystem.Instance.spritestates.Add(spritestategameobject.spritestate.ToString());
                     Getplayersprite playerspritegameobject = spritestategameobject.GetComponentInChildren<Getplayersprite>();
                     Sprite playersprite = playerspritegameobject.GetComponent<Image>().sprite;
-                    AnimatorController spriteanimatiocontroller = spritestategameobject.animationcontoller;
+                    RuntimeAnimatorController spriteanimatiocontroller = spritestategameobject.animationcontoller;
                     PlayerManager.Instance.changesprite(playersprite, spriteanimatiocontroller);
                     //in children the sprite is there;
 

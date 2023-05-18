@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,7 +39,7 @@ public class Shopsystem : MonoBehaviour
             shopplayerdetail.activatesprite();
             playerspritegameobject = shopplayerdetail.GetComponentInChildren<Getplayersprite>();
             playersprite = playerspritegameobject.GetComponent<Image>().sprite;
-            AnimatorController animationcontroller = shopplayerdetail.animationcontoller;
+                RuntimeAnimatorController animationcontroller = shopplayerdetail.animationcontoller;
             PlayerManager.Instance.changesprite(playersprite, animationcontroller);
             Savesystem.Instance.saveplayervalues();
         }
@@ -56,7 +55,7 @@ public class Shopsystem : MonoBehaviour
                 Savesystem.Instance.turnoffequippeddata(shopplayerdetail.childindex);
                 playerspritegameobject = shopplayerdetail.GetComponentInChildren<Getplayersprite>();
                 playersprite = playerspritegameobject.GetComponent<Image>().sprite;
-                AnimatorController animationcontroller = shopplayerdetail.animationcontoller;
+                RuntimeAnimatorController animationcontroller = shopplayerdetail.animationcontoller;
                 PlayerManager.Instance.changesprite(playersprite, animationcontroller);
                 Savesystem.Instance.saveplayervalues();
      

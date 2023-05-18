@@ -36,6 +36,7 @@ public class BlockManager : MonoBehaviour
     public int bcount;
     public Vector3 secondpos;
     public Vector3 thirdpos;
+    public float maxx;
     private void Awake()
     {
         Instance = this;
@@ -49,8 +50,8 @@ public class BlockManager : MonoBehaviour
 
         halfHeight = Camera.main.orthographicSize;
         halfWidth = Camera.main.aspect * halfHeight;
-      
 
+        maxx = blocks[1].transform.position.x - blocks[0].transform.position.x;
        
     }
 
@@ -72,7 +73,8 @@ public class BlockManager : MonoBehaviour
   
     public void Blockinstantiate()
     {
-
+       
+        
         previouspos = blocks[count].transform.position;
         count++;
         if (count > 2)
@@ -87,7 +89,7 @@ public class BlockManager : MonoBehaviour
             bcount = 0;
         }
         randomizesize(blocks[bcount]);
-        blocks[bcount].transform.position = secondpos + new Vector3(Random.Range(1.75f, 4.65f), 0f, 0f);
+        blocks[bcount].transform.position = secondpos + new Vector3(Random.Range(1.75f, maxx), 0f, 0f);
         thirdpos = blocks[bcount].transform.position;
 
     }
