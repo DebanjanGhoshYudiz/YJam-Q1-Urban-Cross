@@ -7394,6 +7394,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   environments:
   - {fileID: 2100000, guid: de2ed093f00bb41288baf6819dc0be73, type: 2}
+  - {fileID: 2100000, guid: 646ea48bd153e45158925c92d8d2573f, type: 2}
+  - {fileID: 2100000, guid: ba4da4ecff0cf4ca6bcf68858179470c, type: 2}
+  - {fileID: 2100000, guid: f3100440fa18e49a39743f99d460991c, type: 2}
   environmentcount: 0
 --- !u!1 &1774070493
 GameObject:
@@ -7792,6 +7795,7 @@ MonoBehaviour:
   Backgroundaudioclips:
   - {fileID: 8300000, guid: 7563119904d354e7980a6fdf38b6ad66, type: 3}
   - {fileID: 8300000, guid: a471f0568b3e14dc49b5da64bb35dfbd, type: 3}
+  lineblopsound: {fileID: 0}
 --- !u!82 &1873461390
 AudioSource:
   m_ObjectHideFlags: 0

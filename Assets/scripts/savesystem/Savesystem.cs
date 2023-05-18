@@ -15,10 +15,11 @@ public class Savedata
     //public float playershopno = 0;
     public List<string> spritestatesdata;
     public int currentplayerindex;
-
+    
 }
 public class Savesystem : MonoBehaviour
 {
+    Playerlockunlockdetails playerlockunlockdetails;
     public float highscore;
     public int cherryscore;
     public List<string> spritestates;
@@ -30,6 +31,7 @@ public class Savesystem : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        playerlockunlockdetails = FindObjectOfType<Playerlockunlockdetails>();
 
     }
     // Start is called before the first frame update
@@ -53,7 +55,7 @@ public class Savesystem : MonoBehaviour
         }
         Scoringsystem.Instance.startscore(cherryscore);
         Scoringsystem.Instance.highscorevalue = highscore;
-        FindObjectOfType<Playerlockunlockdetails>().assignlockunlockdetails();
+        playerlockunlockdetails.assignlockunlockdetails();
 
 
 
@@ -72,7 +74,7 @@ public class Savesystem : MonoBehaviour
         savedata.gamplayhighscore = highscore;
         savedata.spritestatesdata = spritestates;
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/debanjan29.fun";
+        string path = Application.persistentDataPath + "/debanjan30.fun";
         FileStream stream = new FileStream(path, FileMode.Create);
         formatter.Serialize(stream, savedata);
         stream.Close();
@@ -80,7 +82,7 @@ public class Savesystem : MonoBehaviour
     public Savedata loadplayervalues()
     {
 
-        string path = Application.persistentDataPath + "/debanjan29.fun";
+        string path = Application.persistentDataPath + "/debanjan30.fun";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -111,7 +113,7 @@ public class Savesystem : MonoBehaviour
                 spritestates[i] = Spritestate.unlocked.ToString();
             }
         }
-        FindObjectOfType<Playerlockunlockdetails>().assignlockunlockdetails();
+        playerlockunlockdetails.assignlockunlockdetails();
     }
 
 }
