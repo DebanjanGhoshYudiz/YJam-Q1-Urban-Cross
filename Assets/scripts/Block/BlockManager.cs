@@ -39,6 +39,7 @@ public class BlockManager : MonoBehaviour
     public float maxx;
     private void Awake()
     {
+        //blocks[0].transform.position = Camera.main.ViewportToWorldPoint(new Vector2(0.5F,0.2F));
         Instance = this;
         FindObjectOfType<PlayerManager>().Targetreachedevent += Blockinstantiate;
       

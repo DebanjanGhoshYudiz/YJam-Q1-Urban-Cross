@@ -44,11 +44,11 @@ public class Playerlockunlockdetails : MonoBehaviour
                     spritestategameobject.activatesprite();
                     if (spritestategameobject.spritestate == Spritestate.equipped)
                     {
-                        
+
                         Getplayersprite playerspritegameobject = spritestategameobject.GetComponentInChildren<Getplayersprite>();
                         Sprite playersprite = playerspritegameobject.GetComponent<Image>().sprite;
                         RuntimeAnimatorController spriteanimatiocontroller = spritestategameobject.animationcontoller;
-                        PlayerManager.Instance.changesprite(playersprite, spriteanimatiocontroller);
+                        //PlayerManager.Instance.changesprite(playersprite, spriteanimatiocontroller);
                         //change the animation sprite here
                     }
                 }
@@ -75,12 +75,12 @@ public class Playerlockunlockdetails : MonoBehaviour
                     Shopplayerdetail spritestategameobject = child.GetComponent<Shopplayerdetail>();
                     spritestategameobject.spritestate = Spritestate.unlocked;
                     spritestategameobject.activatesprite();
-                    
+
                     Savesystem.Instance.spritestates.Add(spritestategameobject.spritestate.ToString());
                     Getplayersprite playerspritegameobject = spritestategameobject.GetComponentInChildren<Getplayersprite>();
                     Sprite playersprite = playerspritegameobject.GetComponent<Image>().sprite;
                     RuntimeAnimatorController spriteanimatiocontroller = spritestategameobject.animationcontoller;
-                    PlayerManager.Instance.changesprite(playersprite, spriteanimatiocontroller);
+                    //PlayerManager.Instance.changesprite(playersprite, spriteanimatiocontroller);
                     //in children the sprite is there;
 
                 }
@@ -91,31 +91,6 @@ public class Playerlockunlockdetails : MonoBehaviour
 
 
     }
-    /*  public Sprite Getplayersprite(int index)
-      {
-          for(int j=0; j<transform.childCount;j++)
-          {
-              if(index==j)
-              {
-                  return spritelist[index];
-              }
-          }
-          return null; 
-      }
-
-      private void Makespritelist()
-      {
-
-          foreach(Transform child in gameObject.transform)
-          {
-              GameObject childimageobject = child.transform.GetComponent<Getplayersprite>().gameObject;
-              spritelist.Add(childimageobject.GetComponent<Image>().sprite);
-          }
-      }*/
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
+ 
+   

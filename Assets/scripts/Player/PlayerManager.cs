@@ -69,7 +69,7 @@ public class PlayerManager : MonoBehaviour
             lineRendererManager.linerotatereverse = true;
             Vector3 targetpos;
             Savesystem.Instance.saveplayervalues();
-            Scoringsystem.Instance.highscore();
+            //Scoringsystem.Instance.highscore();
             targetpos = transform.position - Vector3.up * 20f;
             movetowardstarget(transform.position, targetpos);
             if (delay == false)

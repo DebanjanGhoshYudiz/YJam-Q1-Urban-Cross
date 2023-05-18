@@ -26,17 +26,17 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate() 
     {
-        moveInput = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+        //moveInput = Input.GetAxisRaw("Horizontal");
+        //rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
-        if (moveInput == 0)
-        {
-            anim.SetBool("isWalking", false);
-        }
-        else
-        {
-            anim.SetBool("isWalking", true);
-        }
+        //if (moveInput == 0)
+        //{
+        //    anim.SetBool("isWalking", false);
+        //}
+        //else
+        //{
+        //    anim.SetBool("isWalking", true);
+        //}
     }
 
     void Update() 

@@ -61,11 +61,8 @@ public class Savesystem : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-   
-    }
+    
+    
 
     public void saveplayervalues()
     {
@@ -74,7 +71,7 @@ public class Savesystem : MonoBehaviour
         savedata.gamplayhighscore = highscore;
         savedata.spritestatesdata = spritestates;
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/debanjan30.fun";
+        string path = Application.persistentDataPath + "/debanjan31.fun";
         FileStream stream = new FileStream(path, FileMode.Create);
         formatter.Serialize(stream, savedata);
         stream.Close();
@@ -82,7 +79,7 @@ public class Savesystem : MonoBehaviour
     public Savedata loadplayervalues()
     {
 
-        string path = Application.persistentDataPath + "/debanjan30.fun";
+        string path = Application.persistentDataPath + "/debanjan31.fun";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();

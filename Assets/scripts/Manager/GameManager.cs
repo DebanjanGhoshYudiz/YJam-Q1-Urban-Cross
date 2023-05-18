@@ -37,11 +37,7 @@ public class GameManager : MonoBehaviour
         blockscale = block1.transform.localScale;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     public void Resetposition()
     {
         //put omething in collided gameobject

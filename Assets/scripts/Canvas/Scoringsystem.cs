@@ -33,10 +33,7 @@ public class Scoringsystem : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
     public void startscore(int score)
     {
         Cherrytext.text = score.ToString();
