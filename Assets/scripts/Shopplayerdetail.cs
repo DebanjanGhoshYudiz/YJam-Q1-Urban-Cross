@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class Shopplayerdetail : MonoBehaviour
@@ -10,27 +11,33 @@ public class Shopplayerdetail : MonoBehaviour
     public GameObject lockedgameobject;
     public GameObject unlockedgameobject;
     public int childindex;
+   public AnimatorController animationcontoller;
     //public Sprite 
     //locked screen and unlocked screen sprite
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         childindex = transform.GetSiblingIndex();
-       
-        
+    }
+    void Start()
+    {
+
+
+
         //here define a func to change the active gameobject
     }
 
     public void activatesprite()
     {
-        if(spritestate== Spritestate.locked)
+
+        if (spritestate == Spritestate.locked)
         {
             lockedgameobject.active = true;
             unlockedgameobject.active = false;
         }
         else if (spritestate == Spritestate.unlocked || spritestate == Spritestate.equipped)
         {
-            
+
             lockedgameobject.active = false;
             unlockedgameobject.active = true;
         }
@@ -39,11 +46,10 @@ public class Shopplayerdetail : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-   
+
     }
     public void spriteclicked()
     {
-        Debug.Log("here");
         Shopsystem.Instance.spritebuy(this);
     }
 }
@@ -53,4 +59,5 @@ public enum Spritestate
     unlocked,
     equipped
 }
+
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,58 +14,75 @@ public class Playerlockunlockdetails : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Makespritelist();
+        /* Makespritelist();*/
         //savelockunlockdetails updewtiubg late
         //savedlockunlockdetails = Savesystem.Instance.spritestates;
-        
+
     }
 
- 
+
 
     public void assignlockunlockdetails()
     {
-        savedlockunlockdetails= Savesystem.Instance.spritestates;
+        count = 0;
+        savedlockunlockdetails = Savesystem.Instance.spritestates;
 
         if (savedlockunlockdetails.Count > 0)
         {
-            
+
             foreach (Transform child in transform)
             {
+
+
+
+
+                //0th index
                 if (count < savedlockunlockdetails.Count)
                 {
                     Shopplayerdetail spritestategameobject = child.GetComponent<Shopplayerdetail>();
                     Spritestate parsed_spritestate = (Spritestate)System.Enum.Parse(typeof(Spritestate), savedlockunlockdetails[count++]);
-                  
-                    if(spritestategameobject==null)
-                    {
-                        Debug.Log(null);
-                    }
                     spritestategameobject.spritestate = parsed_spritestate;
                     spritestategameobject.activatesprite();
-
+                    if (spritestategameobject.spritestate == Spritestate.equipped)
+                    {
+                        
+                        Getplayersprite playerspritegameobject = spritestategameobject.GetComponentInChildren<Getplayersprite>();
+                        Sprite playersprite = playerspritegameobject.GetComponent<Image>().sprite;
+                        AnimatorController spriteanimatiocontroller = spritestategameobject.animationcontoller;
+                        PlayerManager.Instance.changesprite(playersprite, spriteanimatiocontroller);
+                        //change the animation sprite here
+                    }
                 }
             }
         }
         else
         {
+
             foreach (Transform child in transform)
             {
+
                 if (child.GetComponent<Shopplayerdetail>().childindex > 0)
                 {
+
                     Shopplayerdetail spritestategameobject = child.GetComponent<Shopplayerdetail>();
                     spritestategameobject.spritestate = Spritestate.locked;
                     spritestategameobject.activatesprite();
                     Savesystem.Instance.spritestates.Add(spritestategameobject.spritestate.ToString());
 
-
                 }
                 else
                 {
-                    
+
                     Shopplayerdetail spritestategameobject = child.GetComponent<Shopplayerdetail>();
                     spritestategameobject.spritestate = Spritestate.unlocked;
                     spritestategameobject.activatesprite();
+                    
                     Savesystem.Instance.spritestates.Add(spritestategameobject.spritestate.ToString());
+                    Getplayersprite playerspritegameobject = spritestategameobject.GetComponentInChildren<Getplayersprite>();
+                    Sprite playersprite = playerspritegameobject.GetComponent<Image>().sprite;
+                    AnimatorController spriteanimatiocontroller = spritestategameobject.animationcontoller;
+                    PlayerManager.Instance.changesprite(playersprite, spriteanimatiocontroller);
+                    //in children the sprite is there;
 
                 }
             }
@@ -73,32 +91,32 @@ public class Playerlockunlockdetails : MonoBehaviour
         }
 
 
-        }
-    public Sprite Getplayersprite(int index)
-    {
-        for(int j=0; j<transform.childCount;j++)
-        {
-            if(index==j)
-            {
-                return spritelist[index];
-            }
-        }
-        return null; 
     }
+    /*  public Sprite Getplayersprite(int index)
+      {
+          for(int j=0; j<transform.childCount;j++)
+          {
+              if(index==j)
+              {
+                  return spritelist[index];
+              }
+          }
+          return null; 
+      }
 
-    private void Makespritelist()
-    {
+      private void Makespritelist()
+      {
 
-        foreach(GameObject child in transform)
-        {
-            GameObject childimageobject = child.GetComponent<Getplayersprite>().gameObject;
-            spritelist.Add(childimageobject.GetComponent<Image>().sprite);
-        }
-    }
+          foreach(Transform child in gameObject.transform)
+          {
+              GameObject childimageobject = child.transform.GetComponent<Getplayersprite>().gameObject;
+              spritelist.Add(childimageobject.GetComponent<Image>().sprite);
+          }
+      }*/
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

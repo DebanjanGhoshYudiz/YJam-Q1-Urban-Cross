@@ -63,16 +63,10 @@ public class GameManager : MonoBehaviour
         BlockManager.Instance.bcount = 0;
         BackgroundManager.Instance.targetpos = cameraoriginalpos;
         Scoringsystem.Instance.gameplayscoreset();
-        //Debug.Log(PlayerManager.Instance.collidedgameobject);
+      
 
     }
 
 
-    //IEnumerator Reset()
-    //{
-    //    yield return new WaitForSeconds(1.5f);
-    //    Debug.Log("here in reset");
-    //    Debug.Log(PlayerManager.Instance.collidedgameobject);
-    //    PlayerManager.Instance.isplayerdestroyed = false;
-    //}
+   
 }

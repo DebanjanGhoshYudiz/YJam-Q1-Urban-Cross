@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Shopsystem : MonoBehaviour
 {
     public static Shopsystem Instance;
-
+    Getplayersprite playerspritegameobject;
+    Sprite playersprite;
     private void Awake()
     {
         Instance = this;
@@ -25,41 +27,47 @@ public class Shopsystem : MonoBehaviour
     }
     public void spritebuy(Shopplayerdetail shopplayerdetail)
     {
-     
+
+        
         if (buycheck(shopplayerdetail) && shopplayerdetail.spritestate == Spritestate.locked)
         {
-            
+
             Scoringsystem.Instance.cherryscore -= shopplayerdetail.Coinsrequired;
-            Savesystem.Instance.cherryscore-= shopplayerdetail.Coinsrequired;
-            shopplayerdetail.spritestate = Spritestate.unlocked;
+            Savesystem.Instance.cherryscore -= shopplayerdetail.Coinsrequired;
+            shopplayerdetail.spritestate = Spritestate.equipped;
             Savesystem.Instance.spritestates[shopplayerdetail.childindex] = shopplayerdetail.spritestate.ToString();
+            Savesystem.Instance.turnoffequippeddata(shopplayerdetail.childindex);
+            shopplayerdetail.activatesprite();
+            playerspritegameobject = shopplayerdetail.GetComponentInChildren<Getplayersprite>();
+            playersprite = playerspritegameobject.GetComponent<Image>().sprite;
+            AnimatorController animationcontroller = shopplayerdetail.animationcontoller;
+            PlayerManager.Instance.changesprite(playersprite, animationcontroller);
             Savesystem.Instance.saveplayervalues();
-             shopplayerdetail.activatesprite();
-            Getplayersprite playerspritegameobject = shopplayerdetail.GetComponentInChildren<Getplayersprite>();
-            Sprite playersprite = playerspritegameobject.GetComponent<Image>().sprite;
-            PlayerManager.Instance.changesprite(playersprite);
-            //also one condition to save the sprite
-
-
-
         }
-       
+
         else
         {
             if (shopplayerdetail.spritestate == Spritestate.unlocked)
             {
-                Getplayersprite playerspritegameobject = shopplayerdetail.GetComponentInChildren<Getplayersprite>();
-                Sprite playersprite = playerspritegameobject.GetComponent<Image>().sprite;
-                PlayerManager.Instance.changesprite(playersprite);
-                float index = shopplayerdetail.childindex;
+
+
+                shopplayerdetail.spritestate = Spritestate.equipped;
+                Savesystem.Instance.spritestates[shopplayerdetail.childindex] = shopplayerdetail.spritestate.ToString();
+                Savesystem.Instance.turnoffequippeddata(shopplayerdetail.childindex);
+                playerspritegameobject = shopplayerdetail.GetComponentInChildren<Getplayersprite>();
+                playersprite = playerspritegameobject.GetComponent<Image>().sprite;
+                AnimatorController animationcontroller = shopplayerdetail.animationcontoller;
+                PlayerManager.Instance.changesprite(playersprite, animationcontroller);
+                Savesystem.Instance.saveplayervalues();
+     
             }
         }
-      
+
     }
     public bool buycheck(Shopplayerdetail shopplayerdetail)
     {
         float currentcherryscore = Scoringsystem.Instance.cherryscore;
-        if(currentcherryscore>= shopplayerdetail.Coinsrequired)
+        if (currentcherryscore >= shopplayerdetail.Coinsrequired)
         {
             return true;
         }

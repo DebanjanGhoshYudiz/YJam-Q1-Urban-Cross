@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,15 +18,17 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance;
     public bool delay=false;
     LineRendererManager lineRendererManager;
+    Animator animator;
     private void Awake()
     {
         Instance = this;
+        animator = GetComponent<Animator>();
     }
     // Start is called before the first frame update
     void Start()
     {
         lineRendererManager = FindObjectOfType<LineRendererManager>();
-
+        animator = GetComponent<Animator>();
 
     }
 
@@ -35,6 +38,7 @@ public class PlayerManager : MonoBehaviour
         transform.eulerAngles = Vector3.zero;
         if (playercanmove && !isplayerdestroyed)
         {
+            animator.SetBool("Run",true);
             targetpos = new Vector3(targetpos.x, transform.position.y, targetpos.z);
             movetowardstarget(transform.position, targetpos);
             if (transform.position == targetpos )
@@ -45,6 +49,7 @@ public class PlayerManager : MonoBehaviour
                     if (Targetreachedevent != null)
                     {
                         Targetreachedevent();
+                       
                         playercanmove = false;
                         platformpresent = false;
                     }
@@ -140,6 +145,7 @@ public class PlayerManager : MonoBehaviour
             targetpos = new Vector3(collision.collider.bounds.max.x - 0.3f, transform.position.y, transform.position.z);
             movetowardstarget(transform.position, targetpos);
             timer += Time.deltaTime;
+            animator.SetBool("Run", false);
         }
         
 
@@ -154,11 +160,12 @@ public class PlayerManager : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, targetpos, Time.deltaTime * 2f);
     }
-    public void changesprite(Sprite sprite)
+    public void changesprite(Sprite sprite, AnimatorController spriteanimationcontroller)
     {
-        Debug.Log(sprite);
         gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
+        gameObject.GetComponent<Animator>().runtimeAnimatorController = spriteanimationcontroller;
     }
+
     
 
 }

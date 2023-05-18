@@ -10,17 +10,17 @@ using UnityEngine;
 [System.Serializable]
 public class Savedata
 {
-    public float savedcherryscore = 0;
+    public int savedcherryscore = 0;
     public float gamplayhighscore = 0;
     //public float playershopno = 0;
     public List<string> spritestatesdata;
     public int currentplayerindex;
-   
+
 }
 public class Savesystem : MonoBehaviour
 {
     public float highscore;
-    public float cherryscore;
+    public int cherryscore;
     public List<string> spritestates;
     Savedata savedata;
     Savedata newsavedata;
@@ -51,16 +51,18 @@ public class Savesystem : MonoBehaviour
             cherryscore = savedata.savedcherryscore;
             spritestates = savedata.spritestatesdata;
         }
-        Scoringsystem.Instance.cherryscore = cherryscore;
+        Scoringsystem.Instance.startscore(cherryscore);
         Scoringsystem.Instance.highscorevalue = highscore;
         FindObjectOfType<Playerlockunlockdetails>().assignlockunlockdetails();
-       
-        
+
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+   
     }
 
     public void saveplayervalues()
@@ -70,7 +72,7 @@ public class Savesystem : MonoBehaviour
         savedata.gamplayhighscore = highscore;
         savedata.spritestatesdata = spritestates;
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/debanjan12.fun";
+        string path = Application.persistentDataPath + "/debanjan29.fun";
         FileStream stream = new FileStream(path, FileMode.Create);
         formatter.Serialize(stream, savedata);
         stream.Close();
@@ -78,7 +80,7 @@ public class Savesystem : MonoBehaviour
     public Savedata loadplayervalues()
     {
 
-        string path = Application.persistentDataPath + "/debanjan12.fun";
+        string path = Application.persistentDataPath + "/debanjan29.fun";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -98,6 +100,18 @@ public class Savesystem : MonoBehaviour
         }
 
         return savedata;
+    }
+    public void turnoffequippeddata(int index)
+    {
+
+        for (int i = 0; i < spritestates.Count; i++)
+        {
+            if (spritestates[i] == Spritestate.equipped.ToString() && i != index)
+            {
+                spritestates[i] = Spritestate.unlocked.ToString();
+            }
+        }
+        FindObjectOfType<Playerlockunlockdetails>().assignlockunlockdetails();
     }
 
 }

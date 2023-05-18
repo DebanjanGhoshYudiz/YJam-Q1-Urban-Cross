@@ -795,7 +795,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 124577345}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 398185189}
+        m_TargetAssemblyTypeName: Shopplayerdetail, Assembly-CSharp
+        m_MethodName: spriteclicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &124577345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -816,7 +828,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1175299066, guid: b3c6428932f804c468aacfedd97eba4f, type: 3}
+  m_Sprite: {fileID: 113891475, guid: b3c6428932f804c468aacfedd97eba4f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1332,7 +1344,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190117271}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -2175,11 +2187,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ee9d6a5a2534a5cbb38ff612565579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Coinsrequired: 1
+  Coinsrequired: 0
   spritestate: 0
   lockedgameobject: {fileID: 1940490296}
   unlockedgameobject: {fileID: 1914487671}
   childindex: 0
+  animationcontoller: {fileID: 9100000, guid: 13280cb4b22cd4655b046f8a54020f1c, type: 2}
 --- !u!1 &398185187
 GameObject:
   m_ObjectHideFlags: 0
@@ -2231,11 +2244,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ee9d6a5a2534a5cbb38ff612565579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Coinsrequired: 1
+  Coinsrequired: 0
   spritestate: 0
   lockedgameobject: {fileID: 619700262}
   unlockedgameobject: {fileID: 124577342}
   childindex: 0
+  animationcontoller: {fileID: 9100000, guid: 1ff15e2f250d14803acb27c93facac79, type: 2}
 --- !u!1 &405788611
 GameObject:
   m_ObjectHideFlags: 0
@@ -3402,7 +3416,6 @@ GameObject:
   - component: {fileID: 693981364}
   - component: {fileID: 693981367}
   - component: {fileID: 693981366}
-  - component: {fileID: 693981365}
   - component: {fileID: 693981368}
   m_Layer: 5
   m_Name: Shoppanel
@@ -3427,57 +3440,13 @@ RectTransform:
   - {fileID: 1269766410}
   - {fileID: 388403725}
   m_Father: {fileID: 1333178890}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -55.111206}
   m_SizeDelta: {x: 1500, y: 1500}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &693981365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 693981363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 693981366}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &693981366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3529,6 +3498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   savedlockunlockdetails: []
+  spritelist: []
 --- !u!1 &696083828
 GameObject:
   m_ObjectHideFlags: 0
@@ -3867,7 +3837,7 @@ GameObject:
   - component: {fileID: 791281062}
   - component: {fileID: 791281065}
   m_Layer: 5
-  m_Name: Player1
+  m_Name: Player2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3936,7 +3906,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 791281063}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1269766411}
+        m_TargetAssemblyTypeName: Shopplayerdetail, Assembly-CSharp
+        m_MethodName: spriteclicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &791281063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3957,7 +3939,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 565499cfe06854e6c9149c8c72f708c9, type: 2}
+  m_Sprite: {fileID: 500559131, guid: 8f9cb81b8b63047c984a791fd43eabdc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4279,10 +4261,10 @@ GameObject:
   m_Component:
   - component: {fileID: 888069417}
   - component: {fileID: 888069416}
-  - component: {fileID: 888069415}
   - component: {fileID: 888069418}
   - component: {fileID: 888069420}
   - component: {fileID: 888069419}
+  - component: {fileID: 888069421}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -4290,26 +4272,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &888069415
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888069414}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1ff15e2f250d14803acb27c93facac79, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
 --- !u!212 &888069416
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4350,7 +4312,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 6
   m_Sprite: {fileID: 1730699319, guid: b3c6428932f804c468aacfedd97eba4f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4429,7 +4391,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.015765935, y: 0.02154851}
+  m_Offset: {x: 0.02248525, y: 0.02154851}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4440,8 +4402,28 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.08788431, y: 1.0969028}
+  m_Size: {x: 0.06979129, y: 1.0969028}
   m_EdgeRadius: 0
+--- !u!95 &888069421
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888069414}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1ff15e2f250d14803acb27c93facac79, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &931067073
 GameObject:
   m_ObjectHideFlags: 0
@@ -5513,11 +5495,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ee9d6a5a2534a5cbb38ff612565579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Coinsrequired: 1
+  Coinsrequired: 0
   spritestate: 0
   lockedgameobject: {fileID: 213694666}
   unlockedgameobject: {fileID: 791281059}
   childindex: 0
+  animationcontoller: {fileID: 9100000, guid: 8f5c9972854264455972be0a6b76e73e, type: 2}
 --- !u!1 &1333178889
 GameObject:
   m_ObjectHideFlags: 0
@@ -5551,8 +5534,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 190117272}
-  - {fileID: 693981364}
   - {fileID: 1867775115}
+  - {fileID: 693981364}
   m_Father: {fileID: 1349952251}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5622,7 +5605,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333178889}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -7648,11 +7631,11 @@ RectTransform:
   m_Children:
   - {fileID: 214149914}
   m_Father: {fileID: 1333178890}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 477.80832, y: -596.99054}
+  m_AnchoredPosition: {x: 477.80832, y: -955}
   m_SizeDelta: {x: 383.0499, y: 177.3528}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1867775116
@@ -7761,6 +7744,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1867775114}
   m_CullTransparentMesh: 1
+--- !u!1 &1873461387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1873461388}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1873461388
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873461387}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6995053, y: -2.044991, z: -0.00913284}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1900447502
 GameObject:
   m_ObjectHideFlags: 0
@@ -7896,7 +7910,7 @@ GameObject:
   - component: {fileID: 1914487674}
   - component: {fileID: 1914487677}
   m_Layer: 5
-  m_Name: Player1
+  m_Name: Player3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7965,7 +7979,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1914487675}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 388403726}
+        m_TargetAssemblyTypeName: Shopplayerdetail, Assembly-CSharp
+        m_MethodName: spriteclicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1914487675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7986,7 +8012,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 565499cfe06854e6c9149c8c72f708c9, type: 2}
+  m_Sprite: {fileID: -642654750, guid: 1a71fe78ed1fa42a78dba22f3957f793, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

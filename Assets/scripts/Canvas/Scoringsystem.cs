@@ -6,7 +6,7 @@ using UnityEngine;
 public class Scoringsystem : MonoBehaviour
 {
     public static Scoringsystem Instance;
-    public float cherryscore
+    public int cherryscore
     {
         get;
         set;
@@ -37,6 +37,10 @@ public class Scoringsystem : MonoBehaviour
     {
 
     }
+    public void startscore(int score)
+    {
+        Cherrytext.text = score.ToString();
+    }
     public void Incrementcherryscore()
     {
         //increment at savesystem also
@@ -45,6 +49,7 @@ public class Scoringsystem : MonoBehaviour
         Savesystem.Instance.cherryscore = cherryscore;
         Cherrytext.text = cherryscore.ToString();
         //changed
+
         Cherrytextfinalscreen.text = cherryscore.ToString();
     }
     public void Incrementgameplayscore()
