@@ -19,5 +19,6 @@ public class RerunButtonClick : MonoBehaviour
     {
         CanvasManager.Instance.switchscreen(ScreenType.GamePlay);
         GameManager.Instance.Resetposition();
+        FindObjectOfType<LineRendererManager>().resetline();
     }
 }

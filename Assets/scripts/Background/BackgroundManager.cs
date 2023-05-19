@@ -40,6 +40,8 @@ public class BackgroundManager : MonoBehaviour
             //float xmove = xmax - xmid;
             transform.position = Vector3.MoveTowards(transform.position, targetpos, Time.deltaTime * 20f);
             environment.transform.position = Vector3.MoveTowards(environment.transform.position, new Vector3(Camera.main.transform.position.x, environment.transform.position.y, environment.transform.position.z), Time.deltaTime * 20f);
+            Vector2 offset = new Vector2(0.001f, 0f);
+            bgrenderer.material.mainTextureOffset += offset;
         }
 
 

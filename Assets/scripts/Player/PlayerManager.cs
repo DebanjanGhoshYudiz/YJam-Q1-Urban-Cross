@@ -66,10 +66,17 @@ public class PlayerManager : MonoBehaviour
         if(isplayerdestroyed)
         {
             animator.SetBool("Run", false);
-            lineRendererManager.linerotatereverse = true;
+            if (lineRendererManager.length <= 5f)
+            {
+                lineRendererManager.linerotatereverse = true;
+            }
+            else
+            {
+                lineRendererManager.linerotatereverse = false;
+            }
             Vector3 targetpos;
             Savesystem.Instance.saveplayervalues();
-            //Scoringsystem.Instance.highscore();
+            Scoringsystem.Instance.highscore();
             targetpos = transform.position - Vector3.up * 20f;
             movetowardstarget(transform.position, targetpos);
             if (delay == false)

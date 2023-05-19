@@ -4096,6 +4096,7 @@ MonoBehaviour:
   targetpos: {x: 0, y: 0, z: 0}
   length: 0
   boxcollider2d: {fileID: 1396253746}
+  stoplinestretch: 1
   linestretch: 0
   isgamestarted: 0
   linerotatereverse: 0
@@ -4180,7 +4181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888069414}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.41, y: -1.87, z: 0}
+  m_LocalPosition: {x: 0.05374998, y: -1.87, z: 0}
   m_LocalScale: {x: 0.5917309, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

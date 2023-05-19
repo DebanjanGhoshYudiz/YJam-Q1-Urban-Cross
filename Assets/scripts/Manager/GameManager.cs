@@ -59,7 +59,9 @@ public class GameManager : MonoBehaviour
         BlockManager.Instance.bcount = 0;
         BackgroundManager.Instance.targetpos = cameraoriginalpos;
         Scoringsystem.Instance.gameplayscoreset();
-      
+     
+
+
 
     }
 

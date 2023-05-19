@@ -23,7 +23,7 @@ public class LineRendererManager : MonoBehaviour
     public float length;
     public BoxCollider2D boxcollider2d;
     public LineController linecontroller;
-    bool stoplinestretch = true;
+    public bool stoplinestretch = true;
     public bool linestretch = false;
     public bool isgamestarted;
     public bool linerotatereverse=false;
@@ -98,15 +98,18 @@ public class LineRendererManager : MonoBehaviour
         }
         if (linerotatereverse)
         {
-            if (length > 5f)
+            Debug.Log(linerotatereverse);
+            if (length <= 5f)
             {
-                threshold = 270f;
+             
+                threshold = 180f;
             }
             else
             {
-                threshold = 180f;
+                linerotatereverse = false;
             }
-            if (linerenderer.transform.eulerAngles.z != threshold)
+            
+            if (linerenderer.transform.eulerAngles.z != threshold && length<=5f)
             {
                 
                 angle = Vector3.Angle(player.transform.up, player.transform.right);
@@ -141,7 +144,7 @@ public class LineRendererManager : MonoBehaviour
     {
         if (stoplinestretch && isgamestarted)
         {
-           
+            
             linestretch = true;
         }
     }
@@ -155,6 +158,7 @@ public class LineRendererManager : MonoBehaviour
     }
     public void StartDrawLine()
     {
+       
         positions.Clear();
 
 
@@ -167,28 +171,44 @@ public class LineRendererManager : MonoBehaviour
     }
     public void DrawLine()
     {
-        length = linerenderer.GetPosition(1).y - linerenderer.GetPosition(0).y;
-        if (length <= 5f)
-        {
-            currentposition += (player.transform.up * 1.5f * Time.deltaTime);
-            currentposition = new Vector3(0f, currentposition.y, 0f);
-            if (linerenderer.positionCount <= 1)
-            {
 
-                linerenderer.positionCount++;
-            }
-
-            positions.Add(new Vector2(currentposition.x, currentposition.y));
-            linerenderer.SetPosition(1, currentposition);
-            edgecollier2d.points = positions.ToArray();
-        }
-        else
+        if (!PlayerManager.Instance.isplayerdestroyed)
         {
-            if (linerenderer.transform.eulerAngles.z != 270f)
+            
+            length = linerenderer.GetPosition(1).y - linerenderer.GetPosition(0).y;
+            if (length <= 5f)
             {
-                linerotate = true;
+                
+                currentposition += (player.transform.up * 1.5f * Time.deltaTime);
+                currentposition = new Vector3(0f, currentposition.y, 0f);
+                if (linerenderer.positionCount <= 1)
+                {
+
+                    linerenderer.positionCount++;
+                }
+
+                positions.Add(new Vector2(currentposition.x, currentposition.y));
+                linerenderer.SetPosition(1, currentposition);
+                edgecollier2d.points = positions.ToArray();
+            }
+            else
+            {
+                if (linerenderer.transform.eulerAngles.z != 270f)
+                {
+                    linerotate = true;
+                }
             }
         }
+        
     }
+    public void resetline()
+    {
+        linerenderer.SetPosition(1, Vector3.zero);
+        positions.Clear();
+        currentposition = Vector3.zero;
+        linestretch = false;
+
+    }
+
 
 }

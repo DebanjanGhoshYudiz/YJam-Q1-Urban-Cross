@@ -60,6 +60,7 @@ public class Scoringsystem : MonoBehaviour
     {
         gameplayscore = 0;
         Gameplayscoretext.text = gameplayscore.ToString();
+        Gameplayscoretextfinalscreen.text = gameplayscore.ToString();
 
     }
     public void highscore()
