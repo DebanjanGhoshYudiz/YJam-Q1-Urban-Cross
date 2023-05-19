@@ -77,7 +77,7 @@ public class LineRendererManager : MonoBehaviour
         {
 
             angle = Vector3.Angle(player.transform.up, player.transform.right);
-            percmoved = Mathf.MoveTowards(0f, angle, timer * 100f);
+            percmoved = Mathf.MoveTowards(0f, angle, timer * 170f);
             timer += Time.deltaTime;
             linerenderer.transform.eulerAngles = new Vector3(0f, 0f, -percmoved);
             if (linerenderer.transform.eulerAngles.z == 270f)
@@ -113,7 +113,7 @@ public class LineRendererManager : MonoBehaviour
             {
                 
                 angle = Vector3.Angle(player.transform.up, player.transform.right);
-                percmoved = Mathf.MoveTowards(270, 180, timer * 100f);
+                percmoved = Mathf.MoveTowards(270, 180, timer * 170f);
                 timer += Time.deltaTime;
                 linerenderer.transform.eulerAngles = new Vector3(0f, 0f, percmoved);
                 if (linerenderer.transform.eulerAngles.z == 180)
@@ -179,7 +179,7 @@ public class LineRendererManager : MonoBehaviour
             if (length <= 5f)
             {
                 
-                currentposition += (player.transform.up * 1.5f * Time.deltaTime);
+                currentposition += (player.transform.up * 3f * Time.deltaTime);
                 currentposition = new Vector3(0f, currentposition.y, 0f);
                 if (linerenderer.positionCount <= 1)
                 {

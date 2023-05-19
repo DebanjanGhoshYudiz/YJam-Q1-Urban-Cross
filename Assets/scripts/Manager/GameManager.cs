@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public Vector3 cameraoriginalpos;
     [SerializeField] Transform block1;
     Vector3 blockscale;
-    Vector3 playerscale;
+    public Vector3 playerscale;
     public Vector3 block1pos;
     [SerializeField] Transform block2;
     public Vector3 block2pos;
@@ -37,12 +37,13 @@ public class GameManager : MonoBehaviour
         blockscale = block1.transform.localScale;
     }
 
-    
+
     public void Resetposition()
     {
         //put omething in collided gameobject
-        PlayerManager.Instance.isplayerdestroyed = false;
+        PlayerManager.Instance.istraight = true;
         Player.localScale = playerscale;
+        PlayerManager.Instance.isplayerdestroyed = false;
         PlayerManager.Instance.collidedgameobject = defaultcollidedgameobject;
         PlayerManager.Instance.targetpos = Playeroriginalpos;
         PlayerManager.Instance.playercanmove = false;
@@ -59,12 +60,12 @@ public class GameManager : MonoBehaviour
         BlockManager.Instance.bcount = 0;
         BackgroundManager.Instance.targetpos = cameraoriginalpos;
         Scoringsystem.Instance.gameplayscoreset();
-     
+
 
 
 
     }
 
 
-   
+
 }

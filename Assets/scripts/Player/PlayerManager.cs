@@ -11,22 +11,26 @@ public class PlayerManager : MonoBehaviour
     public GameObject collidedgameobject = null;
     public bool platformpresent = false;
     float timer = 0f;
-    bool istraight = true;
+    public bool istraight = true;
     public bool isplayerdestroyed=false;
     public event Action Targetreachedevent;
     public static PlayerManager Instance;
     public bool delay=false;
     LineRendererManager lineRendererManager;
     Animator animator;
+    Vector3 viewpos;
     private void Awake()
     {
+        viewpos = new Vector3(0.1255555f,0.313f,10f);
         Application.targetFrameRate = 500;
         Instance = this;
         animator = GetComponent<Animator>();
+        transform.position = Camera.main.ViewportToWorldPoint(viewpos);
     }
     // Start is called before the first frame update
     void Start()
     {
+
         lineRendererManager = FindObjectOfType<LineRendererManager>();
         animator = GetComponent<Animator>();
 
@@ -136,6 +140,7 @@ public class PlayerManager : MonoBehaviour
         {
             if(!istraight)
             {
+               
                 istraight = true;
                  isplayerdestroyed = true;
                 playercanmove = false;
@@ -165,7 +170,7 @@ public class PlayerManager : MonoBehaviour
     
     public void movetowardstarget(Vector3 presentpos,Vector3 targetpos)
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetpos, Time.deltaTime * 2f);
+        transform.position = Vector3.MoveTowards(transform.position, targetpos, Time.deltaTime * 5f);
     }
     public void changesprite(Sprite sprite, RuntimeAnimatorController spriteanimationcontroller)
     {

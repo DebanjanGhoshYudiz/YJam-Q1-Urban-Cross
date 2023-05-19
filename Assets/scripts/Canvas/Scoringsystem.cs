@@ -30,6 +30,7 @@ public class Scoringsystem : MonoBehaviour
     void Start()
     {
         Cherrytext.text = cherryscore.ToString();
+ 
     }
 
     // Update is called once per frame
@@ -37,6 +38,8 @@ public class Scoringsystem : MonoBehaviour
     public void startscore(int score)
     {
         Cherrytext.text = score.ToString();
+        Cherrytextfinalscreen.text = score.ToString();
+        Debug.Log(Cherrytextfinalscreen.text);
     }
     public void Incrementcherryscore()
     {
@@ -55,6 +58,7 @@ public class Scoringsystem : MonoBehaviour
         Gameplayscoretext.text = gameplayscore.ToString();
         //changed
         Gameplayscoretextfinalscreen.text = gameplayscore.ToString();
+        Debug.Log(Gameplayscoretextfinalscreen.text);
     }
     public void gameplayscoreset()
     {

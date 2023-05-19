@@ -43,7 +43,6 @@ public class Savesystem : MonoBehaviour
         {
             savedata.savedcherryscore = 0;
             savedata.gamplayhighscore = 0;
-            //here we have toput a conition to let all but one unlocked
             spritestates = new List<string>();
 
         }
@@ -56,13 +55,7 @@ public class Savesystem : MonoBehaviour
         Scoringsystem.Instance.startscore(cherryscore);
         Scoringsystem.Instance.highscorevalue = highscore;
         playerlockunlockdetails.assignlockunlockdetails();
-
-
-
     }
-
-    
-    
 
     public void saveplayervalues()
     {
@@ -71,7 +64,7 @@ public class Savesystem : MonoBehaviour
         savedata.gamplayhighscore = highscore;
         savedata.spritestatesdata = spritestates;
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/debanjan33.fun";
+        string path = Application.persistentDataPath + "/debanjan34.fun";
         FileStream stream = new FileStream(path, FileMode.Create);
         formatter.Serialize(stream, savedata);
         stream.Close();
@@ -79,7 +72,7 @@ public class Savesystem : MonoBehaviour
     public Savedata loadplayervalues()
     {
 
-        string path = Application.persistentDataPath + "/debanjan33.fun";
+        string path = Application.persistentDataPath + "/debanjan34.fun";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
