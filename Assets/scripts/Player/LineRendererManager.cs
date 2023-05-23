@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class LineRendererManager : MonoBehaviour
@@ -133,16 +134,19 @@ public class LineRendererManager : MonoBehaviour
 
     public void ontouchdown(InputAction.CallbackContext context)
     {
-      
-        if (stoplinestretch && isgamestarted)
-        {
-           
-            StartDrawLine();
-        }
+       
+          
+            if (stoplinestretch && isgamestarted && !EventSystem.current.IsPointerOverGameObject())
+            {
+
+            Debug.Log(EventSystem.current.IsPointerOverGameObject());
+                StartDrawLine();
+            }
     }
-    public void ontouch(InputAction.CallbackContext context)
+    
+    public void ontouch(InputAction.CallbackContext context )
     {
-        if (stoplinestretch && isgamestarted)
+        if (stoplinestretch && isgamestarted &&  !EventSystem.current.IsPointerOverGameObject())
         {
             
             linestretch = true;
@@ -150,7 +154,7 @@ public class LineRendererManager : MonoBehaviour
     }
     public void ontouchup(InputAction.CallbackContext context)
     {
-        if (stoplinestretch && isgamestarted)
+        if (stoplinestretch && isgamestarted && !EventSystem.current.IsPointerOverGameObject())
         {
             linestretch = false;
             linerotate = true;

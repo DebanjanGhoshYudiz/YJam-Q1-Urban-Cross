@@ -31,10 +31,6 @@ public class Playerlockunlockdetails : MonoBehaviour
 
             foreach (Transform child in transform)
             {
-
-
-
-
                 //0th index
                 if (count < savedlockunlockdetails.Count)
                 {
@@ -44,10 +40,9 @@ public class Playerlockunlockdetails : MonoBehaviour
                     spritestategameobject.activatesprite();
                     if (spritestategameobject.spritestate == Spritestate.equipped)
                     {
-
                         Getplayersprite playerspritegameobject = spritestategameobject.GetComponentInChildren<Getplayersprite>();
                         Sprite playersprite = playerspritegameobject.GetComponent<Image>().sprite;
-                        RuntimeAnimatorController spriteanimatiocontroller = spritestategameobject.animationcontoller;
+                        //RuntimeAnimatorController spriteanimatiocontroller = spritestategameobject.animationcontoller;
                         //PlayerManager.Instance.changesprite(playersprite, spriteanimatiocontroller);
                         //change the animation sprite here
                     }

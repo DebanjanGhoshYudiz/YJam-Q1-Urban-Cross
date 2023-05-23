@@ -9,6 +9,7 @@ public class Audiomanager : MonoBehaviour
     [SerializeField] AudioClip lineblopsound;
     AudioSource audiosource;
     int randomint;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -30,5 +31,23 @@ public class Audiomanager : MonoBehaviour
         audiosource.clip = lineblopsound;
         audiosource.Play();
     }
-    
+    public void muteunmute()
+    {
+       if(audiosource.mute==true)
+        {
+            audiosource.mute = false;
+            CanvasManager.Instance.turnonoffvolumeicon(audiosource.mute);
+            //Volumeturnon.active = true;
+            //Volumeturnoff.active = false;
+        }
+       else
+        {
+            audiosource.mute = true;
+            CanvasManager.Instance.turnonoffvolumeicon(audiosource.mute);
+            //Volumeturnon.active = true;
+            //Volumeturnoff.active = false;
+        }
+    }
+
+
 }

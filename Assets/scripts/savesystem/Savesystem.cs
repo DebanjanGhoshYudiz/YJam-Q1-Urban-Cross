@@ -64,7 +64,7 @@ public class Savesystem : MonoBehaviour
         savedata.gamplayhighscore = highscore;
         savedata.spritestatesdata = spritestates;
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/debanjan36.fun";
+        string path = Application.persistentDataPath + "/debanjan37.fun";
         FileStream stream = new FileStream(path, FileMode.Create);
         formatter.Serialize(stream, savedata);
         stream.Close();
@@ -72,7 +72,7 @@ public class Savesystem : MonoBehaviour
     public Savedata loadplayervalues()
     {
 
-        string path = Application.persistentDataPath + "/debanjan36.fun";
+        string path = Application.persistentDataPath + "/debanjan37.fun";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();

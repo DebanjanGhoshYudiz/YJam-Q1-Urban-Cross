@@ -20,6 +20,7 @@ public class BonusBox : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Scoringsystem.Instance.Incrementgameplayscore();
         bonuspoint.active = true;
         bonuspoint.transform.position = gameObject.transform.position;
         bonuspoint.GetComponent<moveupscript>().targetpos = new Vector3(transform.position.x, transform.position.y + 3f, transform.position.z);

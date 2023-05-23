@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
@@ -112,7 +113,7 @@ public class PlayerManager : MonoBehaviour
         ////below code for player goes upside down and up
         if (Input.GetMouseButtonDown(0))
         {
-            if (playercanmove && !isplayerdestroyed)
+            if (playercanmove && !isplayerdestroyed && !EventSystem.current.IsPointerOverGameObject())
             {
                 if (transform.localScale.y == 0.5)
                 {

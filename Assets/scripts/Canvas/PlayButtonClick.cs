@@ -18,6 +18,7 @@ public class PlayButtonClick : MonoBehaviour
     public void playbuttonclick()
     {
         CanvasManager.Instance.GamePlay();
+        Time.timeScale = 1f;
         //BackgroundManager.Instance.gameplaycamerasetting();
 
     }

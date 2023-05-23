@@ -9,6 +9,8 @@ public class CanvasManager : MonoBehaviour
     public Canvas gameoverscreen;
     public CanvasInfo Currentscreen;
     LineRendererManager lineRendererManager;
+    [SerializeField] GameObject Volumeturnofficon;
+    [SerializeField] GameObject Volumeturnonicon;
     private void Awake()
     {
         Instance = this;
@@ -54,11 +56,25 @@ public class CanvasManager : MonoBehaviour
         switchscreen(ScreenType.GamePlay);
         lineRendererManager.isgamestarted = true;
     }
+    public void turnonoffvolumeicon(bool volumecheck)
+    {
+        if(volumecheck)
+        { 
+            Volumeturnonicon.active = false;
+            Volumeturnofficon.active = true;
+        }
+        else
+        {
+            Volumeturnonicon.active = true;
+            Volumeturnofficon.active = false;
+        }
+    }
 }
 public enum ScreenType
 {
     Home,
     GamePlay,
     GameOver,
-    PlayerShop
+    PlayerShop,
+    Pause
 }
