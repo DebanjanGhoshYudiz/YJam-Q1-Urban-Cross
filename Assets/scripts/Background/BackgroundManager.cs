@@ -17,14 +17,18 @@ public class BackgroundManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        //Camera.main.transform.position = new Vector3(0.5f,0f, -10f);
     }
     // Start is called before the first frame update
     void Start()
     {
-        targetpos = Camera.main.transform.position;
-        halfHeight = Camera.main.orthographicSize;
-        halfWidth = Camera.main.aspect * halfHeight;
+        //targetpos = Camera.main.transform.position;
+        //2.16f
+        //halfHeight = Camera.main.orthographicSize;
+        //halfWidth = Camera.main.aspect * halfHeight;
+        targetpos = new Vector3(2.16f,0f, -10f);
         PlayerManager.Instance.Targetreachedevent += settargetpos;
+
     }
 
     // Update is called once per frame
@@ -34,10 +38,6 @@ public class BackgroundManager : MonoBehaviour
 
         if (transform.position != targetpos)
         {
-
-            //distance between xmid and xmax
-            //xmid -xmax is max threshold
-            //float xmove = xmax - xmid;
             transform.position = Vector3.MoveTowards(transform.position, targetpos, Time.deltaTime * 20f);
             environment.transform.position = Vector3.MoveTowards(environment.transform.position, new Vector3(Camera.main.transform.position.x, environment.transform.position.y, environment.transform.position.z), Time.deltaTime * 20f);
             Vector2 offset = new Vector2(0.001f, 0f);
@@ -48,8 +48,6 @@ public class BackgroundManager : MonoBehaviour
     }
     public void settargetpos()
     {
-        
-        //problerm may arise later
         Scoringsystem.Instance.Incrementgameplayscore();
         xcamera = BlockManager.Instance.diff;
         targetpos = new Vector3(transform.position.x + xcamera, transform.position.y, transform.position.z);

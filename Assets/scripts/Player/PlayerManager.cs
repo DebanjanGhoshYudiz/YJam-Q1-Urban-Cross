@@ -19,6 +19,7 @@ public class PlayerManager : MonoBehaviour
     LineRendererManager lineRendererManager;
     Animator animator;
     Vector3 viewpos;
+    float xthreshold;
     private void Awake()
     {
         viewpos = new Vector3(0.1255555f,0.313f,10f);
@@ -30,7 +31,7 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
         lineRendererManager = FindObjectOfType<LineRendererManager>();
         animator = GetComponent<Animator>();
 
@@ -38,16 +39,18 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
+        //out of coillision exit platformpresent is null
 
         transform.eulerAngles = Vector3.zero;
+       
         if (playercanmove && !isplayerdestroyed)
         {
+            //the problem lies somewgere ghere
             animator.SetBool("Run",true);
             targetpos = new Vector3(targetpos.x, transform.position.y, targetpos.z);
             movetowardstarget(transform.position, targetpos);
             if (transform.position == targetpos )
             {
-
                 if (platformpresent)
                 {
                     if (Targetreachedevent != null)
@@ -63,7 +66,17 @@ public class PlayerManager : MonoBehaviour
                 {
 
                     isplayerdestroyed = true;
+
                 }
+                else
+                {
+                  
+                    if (transform.position.x > xthreshold)
+                    {
+                        isplayerdestroyed = true;
+                    }
+                }
+           
             }
             
         }
@@ -94,6 +107,9 @@ public class PlayerManager : MonoBehaviour
             
             delay =false;
         }
+
+
+        ////below code for player goes upside down and up
         if (Input.GetMouseButtonDown(0))
         {
             if (playercanmove && !isplayerdestroyed)
@@ -128,21 +144,23 @@ public class PlayerManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-       
+    
         if (collision.gameObject != collidedgameobject)
         {
             
             collidedgameobject = collision.collider.gameObject;
+            xthreshold = collision.collider.bounds.max.x;
             platformpresent = true;
            
         }
+        //for player death
         if(collision.gameObject.GetComponent<Blocks>())
         {
             if(!istraight)
             {
                
                 istraight = true;
-                 isplayerdestroyed = true;
+                isplayerdestroyed = true;
                 playercanmove = false;
         
             }
@@ -156,7 +174,6 @@ public class PlayerManager : MonoBehaviour
         {
             targetpos = new Vector3(collision.collider.bounds.max.x - 0.3f, transform.position.y, transform.position.z);
             movetowardstarget(transform.position, targetpos);
-            timer += Time.deltaTime;
             animator.SetBool("Run", false);
         }
         
@@ -164,8 +181,12 @@ public class PlayerManager : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        collidedgameobject = null;
-        platformpresent = false;
+       
+        if (platformpresent == true)
+        {
+            collidedgameobject = null;
+            platformpresent = false;
+        }
     }
     
     public void movetowardstarget(Vector3 presentpos,Vector3 targetpos)

@@ -39,7 +39,7 @@ public class Scoringsystem : MonoBehaviour
     {
         Cherrytext.text = score.ToString();
         Cherrytextfinalscreen.text = score.ToString();
-        Debug.Log(Cherrytextfinalscreen.text);
+       
     }
     public void Incrementcherryscore()
     {
@@ -58,7 +58,7 @@ public class Scoringsystem : MonoBehaviour
         Gameplayscoretext.text = gameplayscore.ToString();
         //changed
         Gameplayscoretextfinalscreen.text = gameplayscore.ToString();
-        Debug.Log(Gameplayscoretextfinalscreen.text);
+ 
     }
     public void gameplayscoreset()
     {
