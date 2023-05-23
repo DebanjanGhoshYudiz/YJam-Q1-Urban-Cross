@@ -3264,7 +3264,7 @@ RectTransform:
   - {fileID: 2118245954}
   - {fileID: 1050948871}
   m_Father: {fileID: 1349952251}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3318,7 +3318,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685724068}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -4775,7 +4775,7 @@ RectTransform:
   - {fileID: 1991846056}
   - {fileID: 1394227020}
   m_Father: {fileID: 1349952251}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6281,10 +6281,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1015475635}
   - {fileID: 1361517369}
   - {fileID: 685724069}
   - {fileID: 1900447503}
-  - {fileID: 1015475635}
   - {fileID: 1333178890}
   - {fileID: 1204400927}
   - {fileID: 996933244}
@@ -6347,7 +6347,7 @@ RectTransform:
   - {fileID: 2043508602}
   - {fileID: 1387885899}
   m_Father: {fileID: 1349952251}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6401,7 +6401,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1361517368}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -9024,7 +9024,7 @@ RectTransform:
   - {fileID: 1663173353}
   - {fileID: 1983716969}
   m_Father: {fileID: 1349952251}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9507,7 +9507,7 @@ GameObject:
   - component: {fileID: 1991846060}
   - component: {fileID: 1991846059}
   - component: {fileID: 1991846058}
-  - component: {fileID: 1991846057}
+  - component: {fileID: 1991846061}
   m_Layer: 5
   m_Name: Resume
   m_TagString: Untagged
@@ -9535,18 +9535,6 @@ RectTransform:
   m_AnchoredPosition: {x: -343.00003, y: 377.00024}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1991846057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1991846055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b763a65fba8764d6995cf2f929b519ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1991846058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9591,9 +9579,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1991846057}
-        m_TargetAssemblyTypeName: RerunButtonClick, Assembly-CSharp
-        m_MethodName: rerunbuttonclick
+      - m_Target: {fileID: 1991846061}
+        m_TargetAssemblyTypeName: Resumescreenbutton, Assembly-CSharp
+        m_MethodName: resumebuttonclick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9641,6 +9629,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1991846055}
   m_CullTransparentMesh: 1
+--- !u!114 &1991846061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991846055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b024702abc4a4c449db9860a3a408e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2043508601
 GameObject:
   m_ObjectHideFlags: 0

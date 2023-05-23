@@ -42,8 +42,8 @@ public class Playerlockunlockdetails : MonoBehaviour
                     {
                         Getplayersprite playerspritegameobject = spritestategameobject.GetComponentInChildren<Getplayersprite>();
                         Sprite playersprite = playerspritegameobject.GetComponent<Image>().sprite;
-                        //RuntimeAnimatorController spriteanimatiocontroller = spritestategameobject.animationcontoller;
-                        //PlayerManager.Instance.changesprite(playersprite, spriteanimatiocontroller);
+                        RuntimeAnimatorController spriteanimatiocontroller = spritestategameobject.animationcontoller;
+                        PlayerManager.Instance.changesprite(playersprite, spriteanimatiocontroller);
                         //change the animation sprite here
                     }
                 }
@@ -75,7 +75,7 @@ public class Playerlockunlockdetails : MonoBehaviour
                     Getplayersprite playerspritegameobject = spritestategameobject.GetComponentInChildren<Getplayersprite>();
                     Sprite playersprite = playerspritegameobject.GetComponent<Image>().sprite;
                     RuntimeAnimatorController spriteanimatiocontroller = spritestategameobject.animationcontoller;
-                    //PlayerManager.Instance.changesprite(playersprite, spriteanimatiocontroller);
+                    PlayerManager.Instance.changesprite(playersprite, spriteanimatiocontroller);
                     //in children the sprite is there;
 
                 }

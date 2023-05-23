@@ -95,7 +95,7 @@ public class PlayerManager : MonoBehaviour
             Vector3 targetpos;
             Savesystem.Instance.saveplayervalues();
             Scoringsystem.Instance.highscore();
-            targetpos = transform.position - Vector3.up * 20f;
+            targetpos = transform.position -( Vector3.up * 20f);
             movetowardstarget(transform.position, targetpos);
             if (delay == false)
             {
