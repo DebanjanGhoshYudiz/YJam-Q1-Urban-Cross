@@ -21,5 +21,6 @@ public class Homescreen : MonoBehaviour
         CanvasManager.Instance.switchscreen(ScreenType.Home);
         lineRendererManager.isgamestarted = false;
         GameManager.Instance.Resetposition();
+        FindObjectOfType<LineRendererManager>().resetline();
     }
 }

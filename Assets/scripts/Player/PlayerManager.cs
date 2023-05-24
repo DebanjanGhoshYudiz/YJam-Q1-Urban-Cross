@@ -52,6 +52,7 @@ public class PlayerManager : MonoBehaviour
             movetowardstarget(transform.position, targetpos);
             if (transform.position == targetpos )
             {
+                Debug.Log("inside positiyon match");
                 if (platformpresent)
                 {
                     if (Targetreachedevent != null)
@@ -182,7 +183,7 @@ public class PlayerManager : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-       
+
         if (platformpresent == true)
         {
             collidedgameobject = null;
