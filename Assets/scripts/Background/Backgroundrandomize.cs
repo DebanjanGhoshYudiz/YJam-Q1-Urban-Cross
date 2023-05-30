@@ -10,12 +10,8 @@ public class Backgroundrandomize : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        environmentcount = Random.Range(0, environments.Count);
-        meshrenderer = GetComponent<MeshRenderer>();
-       
-        meshrenderer.material= environments[environmentcount];
 
-
+        environementchange();
 
     }
 
@@ -23,5 +19,13 @@ public class Backgroundrandomize : MonoBehaviour
     void Update()
     {
         
+    }
+    public void environementchange()
+    {
+        environmentcount = Random.Range(0, environments.Count);
+        meshrenderer = GetComponent<MeshRenderer>();
+
+        meshrenderer.material = environments[environmentcount];
+
     }
 }

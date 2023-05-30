@@ -36,7 +36,7 @@ public class BackgroundManager : MonoBehaviour
     {
 
 
-        if (transform.position != targetpos)
+        if (transform.position != targetpos && Time.timeScale!=0)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetpos, Time.deltaTime * 20f);
             environment.transform.position = Vector3.MoveTowards(environment.transform.position, new Vector3(Camera.main.transform.position.x, environment.transform.position.y, environment.transform.position.z), Time.deltaTime * 20f);

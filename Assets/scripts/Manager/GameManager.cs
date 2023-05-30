@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour
     public Vector3 block3pos;
     public static GameManager Instance;
     [SerializeField] GameObject defaultcollidedgameobject;
+    [SerializeField] Backgroundrandomize backgroundrandomize;
+    [SerializeField] LineRendererManager lineRendererManager;
+    [SerializeField] GameObject bonuspoint;
+    [SerializeField] GameObject perfectcanvas;
     private void Awake()
     {
         Instance = this;
@@ -42,9 +46,11 @@ public class GameManager : MonoBehaviour
     {
         //put omething in collided gameobject
         PlayerManager.Instance.istraight = true;
+        lineRendererManager.linerotatereverse = false;
+        lineRendererManager.timer = 0f;
         Player.localScale = playerscale;
         PlayerManager.Instance.isplayerdestroyed = false;
-        PlayerManager.Instance.collidedgameobject = defaultcollidedgameobject;
+        //PlayerManager.Instance.collidedgameobject = defaultcollidedgameobject;
         PlayerManager.Instance.targetpos = Playeroriginalpos;
         PlayerManager.Instance.playercanmove = false;
         environment.position = environmentoriginalpos;
@@ -60,9 +66,14 @@ public class GameManager : MonoBehaviour
         BlockManager.Instance.bcount = 0;
         BackgroundManager.Instance.targetpos = cameraoriginalpos;
         Scoringsystem.Instance.gameplayscoreset();
+        backgroundrandomize.environementchange();
+        bonuspoint.active = false;
+        perfectcanvas.active = false;
+        //bonuspoint and perfect canvas
+        //timer problem has to set it to zero
 
 
-
+        //linerotatereverse false
 
     }
 

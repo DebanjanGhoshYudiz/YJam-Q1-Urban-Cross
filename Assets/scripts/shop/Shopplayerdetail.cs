@@ -31,6 +31,7 @@ public class Shopplayerdetail : MonoBehaviour
 
         if (spritestate == Spritestate.locked)
         {
+
             lockedgameobject.active = true;
             unlockedgameobject.active = false;
         }
@@ -49,6 +50,7 @@ public class Shopplayerdetail : MonoBehaviour
     }
     public void spriteclicked()
     {
+        Debug.Log("here in clicked");
         Shopsystem.Instance.spritebuy(this);
     }
 }

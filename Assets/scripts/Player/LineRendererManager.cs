@@ -13,7 +13,7 @@ public class LineRendererManager : MonoBehaviour
     public EdgeCollider2D edgecollier2d;
     public List<Vector2> positions;
     public float angle;
-    float timer = 0f;
+    public float timer = 0f;
     public bool linerotate = false;
     float percmoved;
     [SerializeField] GameObject player;
@@ -134,9 +134,9 @@ public class LineRendererManager : MonoBehaviour
 
     public void ontouchdown(InputAction.CallbackContext context)
     {
-       
-          
-            if (stoplinestretch && isgamestarted && !EventSystem.current.IsPointerOverGameObject())
+        Debug.Log("in started");
+
+        if (stoplinestretch && isgamestarted && !EventSystem.current.IsPointerOverGameObject())
             {
 
             Debug.Log(EventSystem.current.IsPointerOverGameObject());
@@ -146,6 +146,7 @@ public class LineRendererManager : MonoBehaviour
     
     public void ontouch(InputAction.CallbackContext context )
     {
+        Debug.Log("in performed");
         if (stoplinestretch && isgamestarted &&  !EventSystem.current.IsPointerOverGameObject())
         {
             
@@ -154,6 +155,8 @@ public class LineRendererManager : MonoBehaviour
     }
     public void ontouchup(InputAction.CallbackContext context)
     {
+
+        Debug.Log("in up");
         if (stoplinestretch && isgamestarted && !EventSystem.current.IsPointerOverGameObject())
         {
             linestretch = false;

@@ -149,6 +149,7 @@ public class PlayerManager : MonoBehaviour
     
         if (collision.gameObject != collidedgameobject)
         {
+            Debug.Log("here in different");
             
             collidedgameobject = collision.collider.gameObject;
             xthreshold = collision.collider.bounds.max.x;
@@ -186,6 +187,7 @@ public class PlayerManager : MonoBehaviour
 
         if (platformpresent == true)
         {
+            Debug.Log("exited");
             collidedgameobject = null;
             platformpresent = false;
         }

@@ -44,7 +44,6 @@ public class Playerlockunlockdetails : MonoBehaviour
                         Sprite playersprite = playerspritegameobject.GetComponent<Image>().sprite;
                         RuntimeAnimatorController spriteanimatiocontroller = spritestategameobject.animationcontoller;
                         PlayerManager.Instance.changesprite(playersprite, spriteanimatiocontroller);
-                        //change the animation sprite here
                     }
                 }
             }
@@ -68,9 +67,8 @@ public class Playerlockunlockdetails : MonoBehaviour
                 {
 
                     Shopplayerdetail spritestategameobject = child.GetComponent<Shopplayerdetail>();
-                    spritestategameobject.spritestate = Spritestate.unlocked;
+                    spritestategameobject.spritestate = Spritestate.equipped;
                     spritestategameobject.activatesprite();
-
                     Savesystem.Instance.spritestates.Add(spritestategameobject.spritestate.ToString());
                     Getplayersprite playerspritegameobject = spritestategameobject.GetComponentInChildren<Getplayersprite>();
                     Sprite playersprite = playerspritegameobject.GetComponent<Image>().sprite;
